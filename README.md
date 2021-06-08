@@ -6,6 +6,8 @@ JavaFX igra, koja bi učitavala pitanja sa remote servera, sa opcijama za login 
 
 ## Zahtevi
 
+23 poena
+
 - [ ] JavaFX komponente grafičkog korisničkog interfejsa
 - [ ] Bazu podataka i logiku u Javi za povezivanje na istu
 - [ ] Minimum 10 klasa
@@ -18,6 +20,7 @@ toString metode.
 - [ ] Java Docs (Komentare koda)
 - [ ] JUnit testove za svaku klasu logike
 - [ ] Dokument koji opisuje funkcionalnosti aplikacije kao i uputstvo korišćenja
+
 7 poena
 - [ ] Uzimanje informacija sa interneta ili
 - [ ] Mrežno programiranje (neka vrsta klijent server aplikacije)

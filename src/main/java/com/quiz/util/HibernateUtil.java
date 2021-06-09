@@ -1,11 +1,11 @@
-package quiz.util;
+package com.quiz.util;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import quiz.entities.Answer;
-import quiz.entities.Player;
-import quiz.entities.Question;
+import com.quiz.entities.Answer;
+import com.quiz.entities.Player;
+import com.quiz.entities.Question;
 
 public class HibernateUtil {
     private static SessionFactory sessionFactory = null;

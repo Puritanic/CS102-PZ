@@ -1,4 +1,4 @@
-package quiz.DAO;
+package com.quiz.DAO;
 
 public class AnswerDAOImpl {
 }

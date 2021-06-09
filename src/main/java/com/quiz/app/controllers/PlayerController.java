@@ -1,4 +1,4 @@
-package quiz.app.controllers;
+package com.quiz.app.controllers;
 
 public class PlayerController {
 }

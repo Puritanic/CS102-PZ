@@ -1,4 +1,4 @@
-package quiz.entities;
+package com.quiz.entities;
 
 import javax.persistence.*;
 import java.util.ArrayList;

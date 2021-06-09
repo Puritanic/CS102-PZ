@@ -1,4 +1,4 @@
-package quiz.interfaces;
+package com.quiz.interfaces;
 
 public interface QuestionDAO {
 }

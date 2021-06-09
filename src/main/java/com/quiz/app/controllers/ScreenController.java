@@ -5,13 +5,13 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
 import java.util.HashMap;
+import java.util.Stack;
 
 public class ScreenController {
     private static ScreenController screenControllerInstance = null;
     private final HashMap<String, Pane> screenMap = new HashMap<>();
     private final Scene main;
-    private Pane currentScreen;
-    private Pane previousScreen;
+    private final Stack<Pane> history = new Stack<>();
 
     public ScreenController(Scene main) {
         this.main = main;
@@ -39,32 +39,16 @@ public class ScreenController {
         screenMap.remove(name);
     }
 
-    public Pane getCurrentScreen() {
-        return currentScreen;
-    }
-
-    public void setCurrentScreen(Pane currentScreen) {
-        this.currentScreen = currentScreen;
-    }
-
-    public Pane getPreviousScreen() {
-        return previousScreen;
-    }
-
-    public void setPreviousScreen(Pane previousScreen) {
-        this.previousScreen = previousScreen;
-    }
-
     public void goBack(){
-        main.setRoot(previousScreen);
-        currentScreen = previousScreen;
-        previousScreen = null;
+        history.pop();
+        Pane currentScreen = history.peek();
+        main.setRoot(currentScreen);
         main.getRoot().getStylesheets().add("styles.css");
     }
 
     public void activate(String name) {
-        previousScreen = currentScreen;
-        currentScreen = screenMap.get(name);
+        Pane currentScreen = screenMap.get(name);
+        history.push(currentScreen);
         main.setRoot(currentScreen);
         main.getRoot().getStylesheets().add("styles.css");
     }

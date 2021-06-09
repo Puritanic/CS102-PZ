@@ -18,15 +18,16 @@ public class Question {
     @OneToMany(mappedBy = "id")
     private List<Answer> answers = new ArrayList<>();
 
-    @Column(name = "correct_answer_idx")
-    int correctAnswerIdx;
+    @OneToOne
+    @JoinColumn(name="correct_answer_id")
+    Answer correctAnswer;
 
     public Question(){}
 
-    public Question(String question, List<Answer> answers, int correctAnswerIdx) {
+    public Question(String question, List<Answer> answers, Answer correctAnswer) {
         this.question = question;
         this.answers = answers;
-        this.correctAnswerIdx = correctAnswerIdx;
+        this.correctAnswer = correctAnswer;
     }
 
     public int getId() {
@@ -53,12 +54,12 @@ public class Question {
         this.answers = answers;
     }
 
-    public int getCorrectAnswerIdx() {
-        return correctAnswerIdx;
+    public Answer getCorrectAnswer() {
+        return correctAnswer;
     }
 
-    public void setCorrectAnswerIdx(int correctAnswerIdx) {
-        this.correctAnswerIdx = correctAnswerIdx;
+    public void setCorrectAnswer(Answer correctAnswer) {
+        this.correctAnswer = correctAnswer;
     }
 
     @Override
@@ -67,7 +68,7 @@ public class Question {
                 "id=" + id +
                 ", question='" + question + '\'' +
                 ", answers=" + answers +
-                ", correctAnswerIdx=" + correctAnswerIdx +
+                ", correctAnswer=" + correctAnswer +
                 '}';
     }
 }

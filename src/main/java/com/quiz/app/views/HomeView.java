@@ -1,5 +1,8 @@
 package com.quiz.app.views;
 
+import com.quiz.app.controllers.ScreenController;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -25,11 +28,8 @@ public class HomeView extends BorderPane implements BaseView {
         top.setAlignment(Pos.CENTER);
         top.getChildren().add(welcomeMsg);
 
-        String imgURI = "images/quizlet.png";
-        Image image3 = new Image(imgURI);
-        System.out.println(image3);
-
-        ImageView imgView = new ImageView(image3);
+        Image quizLogo = new Image("images/quizlet.png");
+        ImageView imgView = new ImageView(quizLogo);
         imgView.setFitHeight(150);
         imgView.setFitWidth(150);
         HBox center = new HBox();
@@ -37,9 +37,13 @@ public class HomeView extends BorderPane implements BaseView {
         center.setPadding(new Insets(50, 0, 0, 0));
         center.getChildren().add(imgView);
 
+        ButtonHandler btnHandler = new ButtonHandler();
         Button loginButton = new Button("Sign in");
+        loginButton.setOnAction(btnHandler);
         Button resultsButton = new Button("See Results");
+        resultsButton.setOnAction(btnHandler);
         Button quickPlayButton = new Button("Quick Play");
+        quickPlayButton.setOnAction(btnHandler);
 
         HBox bottom = new HBox(loginButton, resultsButton, quickPlayButton);
         bottom.setAlignment(Pos.CENTER);
@@ -48,5 +52,28 @@ public class HomeView extends BorderPane implements BaseView {
         setTop(top);
         setCenter(center);
         setBottom(bottom);
+    }
+
+    private static class ButtonHandler implements EventHandler<ActionEvent> {
+        @Override
+        public void handle(ActionEvent event) {
+            String selectedAction = ((Button) event.getSource()).getText();
+            ScreenController sc = ScreenController.getScreenControllerInstance();
+
+            switch (selectedAction) {
+                case "Sign in":
+                    System.out.println("Should go to the Signin view");
+                    sc.activate("Login");
+                    break;
+                case "See Results":
+                    System.out.println("Should go to the Results view");
+                    sc.activate("Results");
+                    break;
+                case "Quick Play":
+                    System.out.println("Should go to the Game view");
+                    sc.activate("Game");
+                    break;
+            }
+        }
     }
 }

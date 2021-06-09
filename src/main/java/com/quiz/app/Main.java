@@ -2,6 +2,7 @@ package com.quiz.app;
 
 import com.quiz.app.controllers.ScreenController;
 import com.quiz.app.views.*;
+import com.quiz.enums.Views;
 import com.quiz.util.HibernateUtil;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -24,7 +25,7 @@ public class Main extends Application {
 
         Scene scene = new Scene(root, 800, 650);
         ScreenController screenController = new ScreenController(scene);
-        screenController.activate("Home");
+        screenController.activate(Views.HOME.name());
         primaryStage.setScene(scene);
         primaryStage.show();
     }

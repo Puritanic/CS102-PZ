@@ -1,6 +1,7 @@
 package com.quiz.app.controllers;
 
 import com.quiz.app.views.*;
+import com.quiz.enums.Views;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
@@ -15,11 +16,11 @@ public class ScreenController {
 
     public ScreenController(Scene main) {
         this.main = main;
-        screenMap.put("Home", new HomeView());
-        screenMap.put("Game", new GameView());
-        screenMap.put("Login", new LoginView());
-        screenMap.put("Register", new RegisterView());
-        screenMap.put("Results", new ResultsView());
+        screenMap.put(Views.HOME.name(), new HomeView());
+        screenMap.put(Views.GAME.name(), new GameView());
+        screenMap.put(Views.LOGIN.name(), new LoginView());
+        screenMap.put(Views.REGISTER.name(), new RegisterView());
+        screenMap.put(Views.RESULTS.name(), new ResultsView());
         screenControllerInstance = this;
     }
 

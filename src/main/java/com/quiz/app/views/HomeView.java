@@ -1,6 +1,7 @@
 package com.quiz.app.views;
 
 import com.quiz.app.controllers.ScreenController;
+import com.quiz.enums.Views;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -62,13 +63,13 @@ public class HomeView extends BorderPane implements BaseView {
 
             switch (selectedAction) {
                 case "Sign in":
-                    sc.activate("Login");
+                    sc.activate(Views.LOGIN.name());
                     break;
                 case "See Results":
-                    sc.activate("Results");
+                    sc.activate(Views.RESULTS.name());
                     break;
                 case "Quick Play":
-                    sc.activate("Game");
+                    sc.activate(Views.GAME.name());
                     break;
             }
         }

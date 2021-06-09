@@ -1,6 +1,7 @@
 package com.quiz.app.views;
 
 import com.quiz.app.controllers.ScreenController;
+import com.quiz.enums.Views;
 import com.quiz.interfaces.BaseView;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -19,11 +20,22 @@ public class LoginView extends BorderPane implements BaseView {
         Button backButton = new Button("Go Back");
         top.getChildren().add(backButton);
 
+        HBox bottom = new HBox();
+        bottom.setAlignment(Pos.CENTER);
+        Button registerButton = new Button("Register");
+        bottom.getChildren().add(registerButton);
+
         backButton.setOnAction(e -> {
             ScreenController sc = ScreenController.getScreenControllerInstance();
             sc.goBack();
         });
 
+        registerButton.setOnAction(e -> {
+            ScreenController sc = ScreenController.getScreenControllerInstance();
+            sc.activate(Views.REGISTER.name());
+        });
+
         setTop(top);
+        setBottom(bottom);
     }
 }

@@ -14,7 +14,7 @@ import javax.persistence.criteria.Root;
 public class PlayerDAOImpl {
     public PlayerDAOImpl(){}
 
-    public void login(String email, String password) throws AuthException {
+    public Player login(String email, String password) throws AuthException {
         Session session = HibernateUtil.getCurrentSession();
         session.beginTransaction();
         CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -30,9 +30,7 @@ public class PlayerDAOImpl {
         if(!correctPass){
             throw new AuthException("Login Failed");
         }
-
-        System.out.println(result);
-        System.out.println("LOGIN?");
+        return result;
     }
 
     public void register(Player newPlayer) {

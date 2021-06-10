@@ -7,7 +7,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 
 @Generated(value = "org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor")
 @StaticMetamodel(Question.class)
-public abstract class Question_ {
+ abstract class Question__ {
 
 	public static volatile SingularAttribute<Question, String> question;
 	public static volatile ListAttribute<Question, Answer> answers;
@@ -18,6 +18,5 @@ public abstract class Question_ {
 	public static final String ANSWERS = "answers";
 	public static final String ID = "id";
 	public static final String CORRECT_ANSWER = "correctAnswer";
-
 }
 

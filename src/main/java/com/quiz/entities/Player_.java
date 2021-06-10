@@ -6,7 +6,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 
 @Generated(value = "org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor")
 @StaticMetamodel(Player.class)
-public abstract class Player_ {
+abstract class Player__ {
 	public static volatile SingularAttribute<Player, String> password;
 	public static volatile SingularAttribute<Player, Integer> finishedGames;
 	public static volatile SingularAttribute<Player, Integer> totalPoints;

@@ -1,5 +1,6 @@
 package com.quiz.app;
 
+import com.quiz.app.controllers.AuthController;
 import com.quiz.app.controllers.ScreenController;
 import com.quiz.enums.Views;
 import com.quiz.util.HibernateUtil;
@@ -13,6 +14,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Java kviz");
         HibernateUtil.createSessionFactory();
+        new AuthController();
 
         primaryStage.setOnCloseRequest(e -> {
             HibernateUtil.closeSessionFactory();

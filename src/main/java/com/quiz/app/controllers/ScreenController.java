@@ -32,14 +32,6 @@ public class ScreenController {
         ScreenController.screenControllerInstance = screenControllerInstance;
     }
 
-    public void addScreen(String name, Pane pane) {
-        screenMap.put(name, pane);
-    }
-
-    public void removeScreen(String name) {
-        screenMap.remove(name);
-    }
-
     public void goBack(){
         history.pop();
         Pane currentScreen = history.peek();

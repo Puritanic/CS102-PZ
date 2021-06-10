@@ -2,6 +2,20 @@
     -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #3D4956, #000);
 }
 
+.login, .register {
+    -fx-background-color: #3D4956;
+}
+
+.login .label, .register .label {
+    -fx-text-fill: #f1f1f1;
+    -fx-font-size: 18px;
+}
+
+.login .header, .register .header {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+}
+
 .welcomeMsg {
     -fx-font-size: 42px;
     -fx-font-weight: bold;

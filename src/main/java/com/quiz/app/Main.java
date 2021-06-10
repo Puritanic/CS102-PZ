@@ -16,8 +16,6 @@ public class Main extends Application {
         HibernateUtil.createSessionFactory();
 
         primaryStage.setOnCloseRequest(e -> {
-            // Prevent the OS from closing the window anyway
-            e.consume();
             HibernateUtil.closeSessionFactory();
         });
 

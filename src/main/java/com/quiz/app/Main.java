@@ -1,7 +1,6 @@
 package com.quiz.app;
 
 import com.quiz.app.controllers.ScreenController;
-import com.quiz.app.views.*;
 import com.quiz.enums.Views;
 import com.quiz.util.HibernateUtil;
 import javafx.application.Application;

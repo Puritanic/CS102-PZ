@@ -1,5 +1,6 @@
 package com.quiz.app.views;
 
+import com.quiz.app.controllers.PlayerController;
 import com.quiz.app.controllers.ScreenController;
 import com.quiz.interfaces.BaseView;
 import com.quiz.util.ViewUtils;
@@ -69,7 +70,6 @@ public class RegisterView extends BorderPane implements BaseView {
         passwordField.setPrefHeight(40);
         gridPane.add(passwordField, 1, 3);
 
-
         // Add Password Label
         Label setAdminLabel = new Label("Set Admin role: ");
         gridPane.add(setAdminLabel, 0, 4);
@@ -84,5 +84,34 @@ public class RegisterView extends BorderPane implements BaseView {
         gridPane.add(submitButton, 0, 5, 2, 1);
         GridPane.setHalignment(submitButton, HPos.CENTER);
         GridPane.setMargin(submitButton, new Insets(20, 0,20,0));
+
+        submitButton.setOnAction(event -> {
+            if(nameField.getText().isEmpty()) {
+                ViewUtils.showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(),
+                        "Form Error!", "Please enter your name");
+                return;
+            }
+            if(emailField.getText().isEmpty()) {
+                ViewUtils.showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(),
+                        "Form Error!", "Please enter your email id");
+                return;
+            }
+            if(passwordField.getText().isEmpty()) {
+                ViewUtils.showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(),
+                        "Form Error!", "Please enter a password");
+                return;
+            }
+
+            ViewUtils.showAlert(Alert.AlertType.CONFIRMATION, gridPane.getScene().getWindow(),
+                    "Registration Successful!", "Welcome " + nameField.getText());
+
+            PlayerController pc = new PlayerController();
+
+            try {
+                pc.registerPlayer(emailField.getText(), nameField.getText(), passwordField.getText(), isAdmin.isSelected());
+            } catch (Exception ex){
+                ex.printStackTrace();
+            }
+        });
     }
 }

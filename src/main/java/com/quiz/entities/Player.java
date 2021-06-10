@@ -30,6 +30,13 @@ public class Player {
 
     public Player(){}
 
+    public Player(String username, String email, String password, boolean isAdmin) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.isAdmin = isAdmin;
+    }
+
     public Player(String username, String email, String password, int totalPoints, int finishedGames, boolean isAdmin) {
         this.username = username;
         this.email = email;

@@ -1,7 +1,9 @@
 package com.quiz.app.views;
 
+import com.quiz.app.controllers.PlayerController;
 import com.quiz.app.controllers.ScreenController;
 import com.quiz.enums.Views;
+import com.quiz.exceptions.AuthException;
 import com.quiz.interfaces.BaseView;
 import com.quiz.util.ViewUtils;
 import javafx.geometry.HPos;
@@ -40,8 +42,6 @@ public class LoginView extends BorderPane implements BaseView {
             ScreenController sc = ScreenController.getScreenControllerInstance();
             sc.activate(Views.REGISTER.name());
         });
-
-
 
         setTop(top);
         setCenter(center);
@@ -82,5 +82,31 @@ public class LoginView extends BorderPane implements BaseView {
         gridPane.add(submitButton, 0, 3, 2, 1);
         GridPane.setHalignment(submitButton, HPos.CENTER);
         GridPane.setMargin(submitButton, new Insets(20, 0,20,0));
+
+        submitButton.setOnAction(event -> {
+            if(emailField.getText().isEmpty()) {
+                ViewUtils.showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(),
+                        "Form Error!", "Please enter your email id");
+                return;
+            }
+            if(passwordField.getText().isEmpty()) {
+                ViewUtils.showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(),
+                        "Form Error!", "Please enter a password");
+                return;
+            }
+
+            PlayerController pc = new PlayerController();
+            try {
+                pc.loginPlayer(emailField.getText(), passwordField.getText());
+            } catch (AuthException ex){
+                ex.printStackTrace();
+                ViewUtils.showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(),
+                        "Login Error!", "Bad credentials. Please check your email and password");
+            } catch (Exception ex){
+                ex.printStackTrace();
+                ViewUtils.showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(),
+                        "Login Error!", "Something went wrong. Please try again.");
+            }
+        });
     }
 }

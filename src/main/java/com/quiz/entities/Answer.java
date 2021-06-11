@@ -53,7 +53,6 @@ public class Answer {
         return "Answer{" +
                 "id=" + id +
                 ", answer='" + answer + '\'' +
-                ", question=" + question +
                 '}';
     }
 }

@@ -10,7 +10,7 @@ import java.util.List;
 public class QuestionDAOImpl {
     public QuestionDAOImpl(){}
 
-    public List<Question> getQuestions(){
+    public List<Question> getQuestions() {
         Session session = HibernateUtil.getCurrentSession();
         Transaction tx =  session.beginTransaction();
 

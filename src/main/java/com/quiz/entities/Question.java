@@ -15,12 +15,11 @@ public class Question {
     @Column(name = "question")
     private String question;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "question")
-    private List<Answer> answers = new ArrayList<>();
+    @Column(name = "correct_answer_id")
+    private String correctAnswerId;
 
-//    @OneToOne
-//    @JoinColumn(name="correct_answer_id")
-//    private Answer correctAnswer;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "question", cascade = CascadeType.ALL)
+    private List<Answer> answers = new ArrayList<>();
 
     public Question(){}
 
@@ -28,12 +27,6 @@ public class Question {
         this.question = question;
         this.answers = answers;
     }
-
-//    public Question(String question, List<Answer> answers, Answer correctAnswer) {
-//        this.question = question;
-//        this.answers = answers;
-//        this.correctAnswer = correctAnswer;
-//    }
 
     public int getId() {
         return id;
@@ -59,19 +52,20 @@ public class Question {
         this.answers = answers;
     }
 
-//    public Answer getCorrectAnswer() {
-//        return correctAnswer;
-//    }
-//
-//    public void setCorrectAnswer(Answer correctAnswer) {
-//        this.correctAnswer = correctAnswer;
-//    }
+    public String getCorrectAnswerId() {
+        return correctAnswerId;
+    }
+
+    public void setCorrectAnswerId(String correctAnswerId) {
+        this.correctAnswerId = correctAnswerId;
+    }
 
     @Override
     public String toString() {
         return "Question{" +
                 "id=" + id +
                 ", question='" + question + '\'' +
+                ", correctAnswerId='" + correctAnswerId + '\'' +
                 ", answers=" + answers +
                 '}';
     }

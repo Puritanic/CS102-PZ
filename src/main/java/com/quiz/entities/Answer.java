@@ -8,14 +8,14 @@ public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, unique = true, nullable = false)
-    int id;
+    private int id;
 
     @Column(name = "answer")
-    String answer;
+    private String answer;
 
-    @ManyToOne
-    @JoinColumn(name="question_id")
-    Question question;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="question_id", nullable=false)
+    private Question question;
 
     public Answer(){}
 

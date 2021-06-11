@@ -10,25 +10,30 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, unique = true, nullable = false)
-    int id;
+    private int id;
 
     @Column(name = "question")
-    String question;
+    private String question;
 
-    @OneToMany(mappedBy = "id")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "question")
     private List<Answer> answers = new ArrayList<>();
 
-    @OneToOne
-    @JoinColumn(name="correct_answer_id")
-    Answer correctAnswer;
+//    @OneToOne
+//    @JoinColumn(name="correct_answer_id")
+//    private Answer correctAnswer;
 
     public Question(){}
 
-    public Question(String question, List<Answer> answers, Answer correctAnswer) {
+    public Question(String question, List<Answer> answers) {
         this.question = question;
         this.answers = answers;
-        this.correctAnswer = correctAnswer;
     }
+
+//    public Question(String question, List<Answer> answers, Answer correctAnswer) {
+//        this.question = question;
+//        this.answers = answers;
+//        this.correctAnswer = correctAnswer;
+//    }
 
     public int getId() {
         return id;
@@ -54,13 +59,13 @@ public class Question {
         this.answers = answers;
     }
 
-    public Answer getCorrectAnswer() {
-        return correctAnswer;
-    }
-
-    public void setCorrectAnswer(Answer correctAnswer) {
-        this.correctAnswer = correctAnswer;
-    }
+//    public Answer getCorrectAnswer() {
+//        return correctAnswer;
+//    }
+//
+//    public void setCorrectAnswer(Answer correctAnswer) {
+//        this.correctAnswer = correctAnswer;
+//    }
 
     @Override
     public String toString() {
@@ -68,7 +73,6 @@ public class Question {
                 "id=" + id +
                 ", question='" + question + '\'' +
                 ", answers=" + answers +
-                ", correctAnswer=" + correctAnswer +
                 '}';
     }
 }

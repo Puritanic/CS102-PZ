@@ -14,6 +14,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 
+/**
+ * Klasa zadužena za prikazivanje UI sa tabelom rezultata.
+ */
 public class ResultsView extends BorderPane implements BaseView {
     private final TableView<Player> table = new TableView<>();
 
@@ -46,6 +49,9 @@ public class ResultsView extends BorderPane implements BaseView {
         populateTable();
     }
 
+    /**
+     * Metoda zadužena za popunjavanje tabele korisničkim podacima.
+     */
     public void populateTable() {
         PlayerController pc = new PlayerController();
         table.getItems().clear();

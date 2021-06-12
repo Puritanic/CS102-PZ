@@ -14,8 +14,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 
+/**
+ * Klasa zadužena za prikazivanje početnog ekrana aplikacije.
+ */
 public class HomeView extends BorderPane implements BaseView {
     public HomeView() {
         super();
@@ -30,6 +32,8 @@ public class HomeView extends BorderPane implements BaseView {
 
         setButtons(isAuthenticated);
 
+        // Listener potreban za osmatranje promena u auth state-u AuthControllera,
+        // da bi početna strana prikazala odgovarajući UI u zavisnosti da li je korisnik ulogvan ili ne
         AuthController.getAuthControllerInstance().playerProperty().addListener((obs, oldPlayer, newPlayer) ->
                 setButtons((newPlayer != null))
         );
@@ -56,6 +60,10 @@ public class HomeView extends BorderPane implements BaseView {
 
     }
 
+    /**
+     * Metoda odgovorna za prikazivanje odgovarajućeg seta buttons-a.
+     * @param isAuthenticated bool, auth state igrača
+     */
     private void setButtons(boolean isAuthenticated) {
         if (isAuthenticated) {
             setBottom(withAuthButton(loadMainButtons(true), "Sign out"));
@@ -64,6 +72,12 @@ public class HomeView extends BorderPane implements BaseView {
         }
     }
 
+    /**
+     * "Dekorator" metoda koja dodaje dugme sa btnTxt tekstom u prosledjeni node (pane)
+     * @param pane - node u koji treba da se ubaci dugme
+     * @param btnTxt - tekst koji će biti prikazan na dugmetu
+     * @return HBox
+     */
     private HBox withAuthButton(HBox pane, String btnTxt) {
         ButtonHandler btnHandler = new ButtonHandler();
         Button authBtn = new Button(btnTxt);
@@ -72,6 +86,11 @@ public class HomeView extends BorderPane implements BaseView {
         return pane;
     }
 
+    /**
+     * Metoda odgovorna za prikazivanje glavnog seta buttons-a na početnoj strani
+     * @param isAuthenticated - auth state igrača
+     * @return HBox
+     */
     private HBox loadMainButtons(boolean isAuthenticated) {
         HBox bottom = new HBox();
 
@@ -89,6 +108,9 @@ public class HomeView extends BorderPane implements BaseView {
         return bottom;
     }
 
+    /**
+     * Unutrašnja klasa koja je odgovorna za obradu "klik" dogadjaja dugmadi sa početne strane
+     */
     private static class ButtonHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
@@ -98,17 +120,17 @@ public class HomeView extends BorderPane implements BaseView {
 
             switch (selectedAction) {
                 case "Sign in":
-                    sc.activate(sc.getScreen(Views.LOGIN.name()));
+                    sc.show(sc.getScreen(Views.LOGIN.name()));
                     break;
                 case "Sign out":
                     ac.setPlayer(null);
                     break;
                 case "See Results":
-                    sc.activate(sc.getScreen(Views.RESULTS.name()));
+                    sc.show(sc.getScreen(Views.RESULTS.name()));
                     break;
                 case "Quick Play":
                 case "Play":
-                    sc.activate(sc.getScreen(Views.GAME.name()));
+                    sc.show(sc.getScreen(Views.GAME.name()));
                     break;
             }
         }

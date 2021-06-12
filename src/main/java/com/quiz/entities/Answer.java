@@ -2,6 +2,9 @@ package com.quiz.entities;
 
 import javax.persistence.*;
 
+/**
+ * Hibernate Answer klasa bazirana na answers tabeli u bazi podataka
+ */
 @Entity
 @Table(name = "answers")
 public class Answer {
@@ -10,9 +13,16 @@ public class Answer {
     @Column(name = "id", updatable = false, unique = true, nullable = false)
     private int id;
 
+    /**
+     * Ponudjeni odgovor na pitanje, čiji je deo.
+     */
     @Column(name = "answer")
     private String answer;
 
+    /**
+     * Instanca Question klase mapirana prema question_id-u. Ovo je many to one relacija
+     * zato što pitanje može biti jedno ali imati više odgovora.
+     */
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="question_id", nullable=false)
     private Question question;

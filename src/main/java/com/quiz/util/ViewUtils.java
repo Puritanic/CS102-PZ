@@ -9,26 +9,29 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.stage.Window;
 
+/**
+ * Util klasa sa funkcijama koje se koriste u BaseView klasama. Moguć je samo statički pristup.
+ */
 public final class ViewUtils {
+    private ViewUtils(){}
+
+    /**
+     * Kreira GridPane za prikaz forme na LoginView i RegisterView stranama.
+     * @return GridPane
+     */
     public static GridPane createFormPane() {
-        // Instantiate a new Grid Pane
         GridPane gridPane = new GridPane();
-        // Position the pane at the center of the screen, both vertically and horizontally
+
         gridPane.setAlignment(Pos.CENTER);
-        // Set a padding of 20px on each side
         gridPane.setPadding(new Insets(50, 100, 50, 100));
-        // Set the horizontal gap between columns
         gridPane.setHgap(10);
-        // Set the vertical gap between rows
         gridPane.setVgap(10);
 
-        // Add Column Constraints
-
-        // columnOneConstraints will be applied to all the nodes placed in column one.
+        // konfiguracija za prvu kolonu GridPane-a
         ColumnConstraints columnOneConstraints = new ColumnConstraints(130, 130, Double.MAX_VALUE);
         columnOneConstraints.setHalignment(HPos.RIGHT);
 
-        // columnTwoConstraints will be applied to all the nodes placed in column two.
+        // konfiguracija za drugu kolonu GridPane-a
         ColumnConstraints columnTwoConstrains = new ColumnConstraints(200,200, Double.MAX_VALUE);
         columnTwoConstrains.setHgrow(Priority.ALWAYS);
 
@@ -37,6 +40,12 @@ public final class ViewUtils {
         return gridPane;
     }
 
+    /**
+     * @param alertType Vrsta Alert dijaloga
+     * @param owner - Glavni stage gde treba da bude prikazan
+     * @param title - Naslov Aler Box-a
+     * @param message - Poruka Alert Box-a
+     */
     public static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);

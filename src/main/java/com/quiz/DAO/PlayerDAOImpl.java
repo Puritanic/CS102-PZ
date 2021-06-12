@@ -13,6 +13,9 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
+/**
+ * Data Access Object za Player klasu. Ova klasa se koristi u Player kontroleru za komunikaciju sa bazom podataka.
+ */
 public class PlayerDAOImpl implements PlayerDAO {
     public PlayerDAOImpl(){}
 

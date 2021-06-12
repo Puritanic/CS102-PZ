@@ -16,7 +16,7 @@ public class PlayerController {
     public void loginPlayer(String email, String password) throws AuthException {
         Player player = playerService.login(email, password);
         AuthController.getAuthControllerInstance().setPlayer(player);
-        ScreenController.getScreenControllerInstance().activate(Views.HOME.name());
+        ScreenController.getScreenControllerInstance().show(Views.HOME.name());
     }
 
     public void registerPlayer(String email, String username, String password, boolean isAdmin){
@@ -27,7 +27,7 @@ public class PlayerController {
         playerService.register(newPlayer);
 
         AuthController.getAuthControllerInstance().setPlayer(newPlayer);
-        ScreenController.getScreenControllerInstance().activate(Views.HOME.name());
+        ScreenController.getScreenControllerInstance().show(Views.HOME.name());
     }
 
     public void updatePlayer(Player player) {
@@ -37,6 +37,7 @@ public class PlayerController {
     }
 
     public ObservableList<Player> getPlayerData(){
-        return FXCollections.observableList(playerService.getPlayerData());
+        ObservableList<Player> players = FXCollections.observableList(playerService.getPlayerData());
+        return players;
     }
 }

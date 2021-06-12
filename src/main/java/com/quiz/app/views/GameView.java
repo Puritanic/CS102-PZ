@@ -22,6 +22,9 @@ import javafx.util.Duration;
 
 import java.util.List;
 
+/**
+ * Klasa zadužena za prikazivanje kviz ekrana aplikacije.
+ */
 public class GameView extends BorderPane implements BaseView {
     private final AnswerButton[] answerButtons = new AnswerButton[3];
     private Label questionLabel;
@@ -59,6 +62,10 @@ public class GameView extends BorderPane implements BaseView {
         displayQuestion(question);
     }
 
+    /**
+     * Metoda koja je zadužena za kreiranje Label node-a koji će služiti za prikaz teksta pitanja
+     * @return HBox sa Label node-om
+     */
     private HBox buildQuestionLabel() {
         HBox hBox = new HBox();
         hBox.setAlignment(Pos.CENTER);
@@ -70,6 +77,12 @@ public class GameView extends BorderPane implements BaseView {
         return hBox;
     }
 
+    /**
+     * Metoda koja je zadužena za kreiranje Label node-a koji će služiti za feedback
+     * u zavisnosti da li je odgovor na dato pitanje bio tačan ili ne. Takodje konfiguriše jednostavnu
+     * FadeTransition animaciju za Label node.
+     * @return HBox sa Label node-om
+     */
     private HBox buildFeedbackLabel() {
         HBox hBox = new HBox();
         hBox.setAlignment(Pos.CENTER);
@@ -86,6 +99,10 @@ public class GameView extends BorderPane implements BaseView {
         return hBox;
     }
 
+    /**
+     * Metoda zadužena za kreiranje vertikalne liste odgovora (AnswerButton nodes)
+     * @return VBox - sa odgovorima
+     */
     private VBox buildAnswerButtons() {
         VBox vBox = new VBox();
         vBox.setAlignment(Pos.CENTER);
@@ -104,6 +121,10 @@ public class GameView extends BorderPane implements BaseView {
         return vBox;
     }
 
+    /**
+     * Metoda zadužena za prikaz pitanja sa propratnim odgovorima.
+     * @param question instanca Question klase
+     */
     private void displayQuestion(Question question) {
         questionLabel.setText(question.getQuestion());
         List<Answer> answers = question.getAnswers();
@@ -119,6 +140,12 @@ public class GameView extends BorderPane implements BaseView {
         }
     }
 
+    /**
+     * Metoda zadužena za prikaz Game Over interfejsa, nakon završetka igre.
+     * Takodje, u slučaju da je korisnik ulogovan, pokreće komunikaciju sa bazom podataka
+     * gde se vrši update korisničkih podataka, sa novim brojem poena i brojem završenih partija.
+     * @return BorderPane
+     */
     private BorderPane displayGameOver() {
         questionLabel.setText("");
         feedbackLabel.setText("");
@@ -145,7 +172,7 @@ public class GameView extends BorderPane implements BaseView {
         if (ac.getPlayer() != null) {
             Player player = ac.getPlayer();
             playerGreet.setText("Congratulations, " + player.getUsername() + ".");
-            player.setTotalPoints(player.getTotalPoints() + gameController.getCurrentGamePoints());
+            player.setTotalPoints(player.getTotalPoints() + gameController.getGame().getPoints());
             player.setFinishedGames(player.getFinishedGames() + 1);
             PlayerController pc = new PlayerController();
             pc.updatePlayer(player);
@@ -153,7 +180,7 @@ public class GameView extends BorderPane implements BaseView {
             playerGreet.setText("Register or login to save your points.");
         }
 
-        Label pointsInfo = new Label("You've finished the game with " + gameController.getCurrentGamePoints() + " points.");
+        Label pointsInfo = new Label("You've finished the game with " + gameController.getGame().getPoints() + " points.");
         pointsInfo.getStyleClass().add("infoLabel");
         gameInfo.getChildren().addAll(playerGreet, pointsInfo);
 
@@ -166,9 +193,8 @@ public class GameView extends BorderPane implements BaseView {
         playAgainButton.getStyleClass().add("secondaryButton");
 
         playAgainButton.setOnAction(e -> {
-            System.out.println("Should replay");
             ScreenController sc = ScreenController.getScreenControllerInstance();
-            sc.activate(sc.getScreen(Views.GAME.name()));
+            sc.show(sc.getScreen(Views.GAME.name()));
         });
 
         Button goHomeButton = new Button("Home");
@@ -176,7 +202,7 @@ public class GameView extends BorderPane implements BaseView {
 
         goHomeButton.setOnAction(e -> {
             ScreenController sc = ScreenController.getScreenControllerInstance();
-            sc.activate(Views.HOME.name());
+            sc.show(Views.HOME.name());
         });
 
         buttons.getChildren().addAll(playAgainButton, goHomeButton);
@@ -186,6 +212,9 @@ public class GameView extends BorderPane implements BaseView {
         return bp;
     }
 
+    /**
+     * Unutrašnja klasa koja je odgovorna za obradu "klik" dogadjaja AnswerButton-a
+     */
     private class ButtonHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
@@ -198,7 +227,7 @@ public class GameView extends BorderPane implements BaseView {
                 feedbackLabel.setText("Correct Answer!");
                 feedbackLabel.setStyle("-fx-text-fill: #a6b401");
                 fadeInOut.playFromStart();
-                gameController.setCurrentGamePoints(gameController.getCurrentGamePoints() + 5);
+                gameController.getGame().setPoints(gameController.getGame().getPoints() + 5);
             } else {
                 feedbackLabel.setText("Incorrect Answer!");
                 feedbackLabel.setStyle("-fx-text-fill: #d50102");

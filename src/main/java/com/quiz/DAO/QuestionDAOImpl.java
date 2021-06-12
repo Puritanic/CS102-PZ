@@ -8,6 +8,9 @@ import org.hibernate.Transaction;
 
 import java.util.List;
 
+/**
+ * Data Access Object za Question klasu. Koristi se Question kontroler klasi za komunikaciju za bazom.
+ */
 public class QuestionDAOImpl implements QuestionDAO {
     public QuestionDAOImpl(){}
 

@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Hibernate Question klasa bazirana na questions tabeli u bazi podataka
+ */
 @Entity
 @Table(name = "questions")
 public class Question {
@@ -12,12 +15,22 @@ public class Question {
     @Column(name = "id", updatable = false, unique = true, nullable = false)
     private int id;
 
+    /**
+     * Tekst pitanja.
+     */
     @Column(name = "question")
     private String question;
 
+    /**
+     * Id tačnog odgovora u listi odgovora koja se dobija sa pitanjem.
+     */
     @Column(name = "correct_answer_id")
     private int correctAnswerId;
 
+    /**
+     * Lista odgovora, mapirana prema question polju u Answer klasi.
+     * One to many relacija zbog toga što jedno pitanje može imati više odgovora.
+     */
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "question", cascade = CascadeType.ALL)
     private List<Answer> answers = new ArrayList<>();
 

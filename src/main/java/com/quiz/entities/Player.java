@@ -2,6 +2,9 @@ package com.quiz.entities;
 
 import javax.persistence.*;
 
+/**
+ * Hibernate Entity klasa bazirana na players tabeli u bazi podataka
+ */
 @Entity
 @Table(name = "players")
 public class Player {

@@ -6,10 +6,13 @@ import com.quiz.entities.Question;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Game klasa koje se koristi za inicijalizaciju igre.
+ */
 public class Game {
     private List<Question> questions = new ArrayList<>();
     private Player player;
-    private int pointsNr = 0;
+    private int points = 0;
 
     public Game() {}
 
@@ -20,12 +23,6 @@ public class Game {
     public Game(List<Question> questions, Player player) {
         this.questions = questions;
         this.player = player;
-    }
-
-    public Game(List<Question> questions, Player player, int pointsNr) {
-        this.questions = questions;
-        this.player = player;
-        this.pointsNr = pointsNr;
     }
 
     public Player getPlayer() {
@@ -44,12 +41,12 @@ public class Game {
         this.questions = questions;
     }
 
-    public int getPointsNr() {
-        return pointsNr;
+    public int getPoints() {
+        return points;
     }
 
-    public void setPointsNr(int pointsNr) {
-        this.pointsNr = pointsNr;
+    public void setPoints(int points) {
+        this.points = points;
     }
 
     @Override
@@ -57,7 +54,7 @@ public class Game {
         return "Game{" +
                 "questions=" + questions +
                 ", player=" + player +
-                ", pointsNr=" + pointsNr +
+                ", points=" + points +
                 '}';
     }
 }

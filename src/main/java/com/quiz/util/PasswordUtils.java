@@ -6,10 +6,9 @@ public class PasswordUtils {
 	private static final StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
 	
 	/**
-	 * Encrypts (digests) a password. 
-	 * 
-	 * @param data - the password to be encrypted. 
-	 * @return
+	 * Enkriptuje prosledjeni String
+	 * @param data String - string koji želimo da ekriptujemo
+	 * @return String - enkriptovani string
 	 */
 	public static String encryptPassword(String data) {
 		return passwordEncryptor.encryptPassword(data);
@@ -17,10 +16,10 @@ public class PasswordUtils {
 	
 	/**
 	 * Checks an unencrypted (plain) password against an encrypted one (a digest) to see if they match. 
-	 * 
-	 * @param plainText
-	 * @param encryptedPassword
-	 * @return true if passwords match, false if not.
+	 * Uporedjuje enkriptovanu i ne-enkriptovanu šifru, i proverava da li se slažu.
+	 * @param plainText - plain text šifra
+	 * @param encryptedPassword - enkriptovana šifra
+	 * @return true ako se šifre slažu, false ako se ne slažu.
 	 */
 	public static boolean checkPassword(String plainText, String encryptedPassword) {
 		return passwordEncryptor.checkPassword(plainText, encryptedPassword);

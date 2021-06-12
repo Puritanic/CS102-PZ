@@ -13,7 +13,7 @@ JavaFX igra, koja bi učitavala pitanja sa remote servera, sa opcijama za login 
 - [x] Play (ulogovani korisnik, cuvaju se poeni i broj partija)
 - [x] Prikazivanje tabele rezultata
 - [ ] Admin funkcionalnost - dodavanje novih pitanja i odgovora, i modifikacija postojećih.
-- [ ] Animacije
+- [x] Animacije
 
 ## Zahtevi
 
@@ -28,7 +28,7 @@ toString metode.
 - [x] Enkapsulaciju (Ograničiti pristupe korisniku u slučaju da nešto ne treba da menja)
 - [x] Java collections framework (JCF): liste, mape ili setove
 - [x] Obraditi sve izuzetke u projektu
-- [ ] Java Docs (Komentare koda)
+- [x] Java Docs (Komentare koda)
 - [ ] JUnit testove za svaku klasu logike
 - [ ] Dokument koji opisuje funkcionalnosti aplikacije kao i uputstvo korišćenja
 

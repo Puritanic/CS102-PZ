@@ -7,6 +7,10 @@ import com.quiz.entities.Answer;
 import com.quiz.entities.Player;
 import com.quiz.entities.Question;
 
+/**
+ * Util klasa za Hibernate, služi za inicijalno povezivanje sa bazom padataka
+ * i za izvršavanje svih transakcija u toku rada aplikacije.
+ */
 public class HibernateUtil {
     private static SessionFactory sessionFactory = null;
 

@@ -9,6 +9,12 @@ import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+/**
+ * Glavna klasa aplikacije, odgovorna za pokretanje aplikacije,
+ * inicijalizaciju Auth kontrolera, inicijalizaciju i čišćenje Hibernate factory-ja.
+ *
+ * @author dtasevski
+ */
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
@@ -24,7 +30,7 @@ public class Main extends Application {
 
         Scene scene = new Scene(root, 900, 650);
         ScreenController screenController = new ScreenController(scene);
-        screenController.activate(Views.HOME.name());
+        screenController.show(Views.HOME.name());
         primaryStage.setScene(scene);
         primaryStage.show();
     }

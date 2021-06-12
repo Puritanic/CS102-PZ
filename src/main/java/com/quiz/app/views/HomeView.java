@@ -108,7 +108,7 @@ public class HomeView extends BorderPane implements BaseView {
                     break;
                 case "Quick Play":
                 case "Play":
-                    sc.activate(Views.GAME.name());
+                    sc.activate(sc.getScreen(Views.GAME.name()));
                     break;
             }
         }

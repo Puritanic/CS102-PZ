@@ -23,17 +23,15 @@ import javafx.scene.layout.VBox;
 import java.util.List;
 
 public class GameView extends BorderPane implements BaseView {
+    private final AnswerButton[] answerButtons = new AnswerButton[3];
     private Label questionLabel;
     private Label feedbackLabel;
-    private final AnswerButton[] answerButtons = new AnswerButton[3];
     private GameController gameController;
 
-    public GameView(){
+    public GameView() {
         System.out.println("GameView loaded");
         getStyleClass().add("game");
         setPadding(new Insets(100, 100, 50, 100));
-
-        resetView();
     }
 
     @Override
@@ -48,7 +46,7 @@ public class GameView extends BorderPane implements BaseView {
         List<Question> questions = controller.getQuestions();
         AuthController ac = AuthController.getAuthControllerInstance();
 
-        if (ac.getPlayer() != null){
+        if (ac.getPlayer() != null) {
             gameController = new GameController(questions, ac.getPlayer());
         } else {
             gameController = new GameController(questions);
@@ -58,7 +56,7 @@ public class GameView extends BorderPane implements BaseView {
         displayQuestion(question);
     }
 
-    private HBox buildQuestionLabel(){
+    private HBox buildQuestionLabel() {
         HBox hBox = new HBox();
         hBox.setAlignment(Pos.CENTER);
         questionLabel = new Label();
@@ -69,7 +67,7 @@ public class GameView extends BorderPane implements BaseView {
         return hBox;
     }
 
-    private HBox buildFeedbackLabel(){
+    private HBox buildFeedbackLabel() {
         HBox hBox = new HBox();
         hBox.setAlignment(Pos.CENTER);
         feedbackLabel = new Label();
@@ -79,11 +77,11 @@ public class GameView extends BorderPane implements BaseView {
         return hBox;
     }
 
-    private VBox buildAnswerButtons(){
+    private VBox buildAnswerButtons() {
         VBox vBox = new VBox();
         vBox.setAlignment(Pos.CENTER);
         vBox.setSpacing(30);
-        vBox.setPadding(new Insets(30, 0,0,0));
+        vBox.setPadding(new Insets(30, 0, 0, 0));
 
         for (int i = 0; i < answerButtons.length; i++) {
             answerButtons[i] = new AnswerButton();
@@ -97,7 +95,7 @@ public class GameView extends BorderPane implements BaseView {
         return vBox;
     }
 
-    private void displayQuestion(Question question){
+    private void displayQuestion(Question question) {
         questionLabel.setText(question.getQuestion());
         List<Answer> answers = question.getAnswers();
 
@@ -107,21 +105,45 @@ public class GameView extends BorderPane implements BaseView {
                 answerButtons[i].setText(_answer.getAnswer());
                 answerButtons[i].setAnswerId(_answer.getId());
             }
-        } catch (IndexOutOfBoundsException ex){
+        } catch (IndexOutOfBoundsException ex) {
             ex.printStackTrace();
         }
     }
 
-    private VBox displayGameOver(){
+    private BorderPane displayGameOver() {
         questionLabel.setText("");
         feedbackLabel.setText("");
 
         System.out.println("Game Over");
-        VBox vBox = new VBox();
-        vBox.setAlignment(Pos.CENTER);
-        vBox.setSpacing(100);
-        Label label = new Label("Game Over");
-        label.getStyleClass().add("title");
+        BorderPane bp = new BorderPane();
+
+        HBox top = new HBox();
+        top.setAlignment(Pos.CENTER);
+        Label title = new Label("Game Over");
+        title.getStyleClass().add("title");
+        top.getChildren().add(title);
+        bp.setTop(top);
+
+        VBox gameInfo = new VBox();
+        gameInfo.setSpacing(40);
+        gameInfo.setAlignment(Pos.CENTER);
+
+        AuthController ac = AuthController.getAuthControllerInstance();
+
+        Label playerGreet = new Label();
+        playerGreet.getStyleClass().add("infoLabel");
+
+        if (ac.getPlayer() != null) {
+            playerGreet.setText("Congratulations, " + ac.getPlayer().getUsername());
+        } else {
+            playerGreet.setText("Register or login to save your points.");
+        }
+
+        Label pointsInfo = new Label("You've finished the game with " + gameController.getCurrentGamePoints() + " points.");
+        pointsInfo.getStyleClass().add("infoLabel");
+        gameInfo.getChildren().addAll(playerGreet, pointsInfo);
+
+        bp.setCenter(gameInfo);
 
         HBox buttons = new HBox();
         buttons.setSpacing(20);
@@ -145,9 +167,9 @@ public class GameView extends BorderPane implements BaseView {
 
         buttons.getChildren().addAll(playAgainButton, goHomeButton);
 
-        vBox.getChildren().addAll(label, buttons);
+        bp.setBottom(buttons);
 
-        return vBox;
+        return bp;
     }
 
     private class ButtonHandler implements EventHandler<ActionEvent> {
@@ -158,22 +180,20 @@ public class GameView extends BorderPane implements BaseView {
             int selectedAnswerId = selectedBtn.getAnswerId();
             Question currentQuestion = gameController.getCurrentQuestion();
 
-            System.out.println(selectedAnswer + " " + selectedAnswerId + " : " + currentQuestion.getCorrectAnswerId());
+            System.out.println(selectedAnswerId + " : " + currentQuestion.getCorrectAnswerId());
 
-            if (currentQuestion.getCorrectAnswerId() == selectedAnswerId){
-                System.out.println("Correct Answer!");
-                feedbackLabel.getStyleClass().remove("incorrect");
-                feedbackLabel.getStyleClass().add("correct");
+            feedbackLabel.setStyle(null);
+            if (currentQuestion.getCorrectAnswerId() == selectedAnswerId) {
                 feedbackLabel.setText("Correct Answer!");
+                feedbackLabel.setStyle("-fx-text-fill: #a6b401");
+                gameController.setCurrentGamePoints(gameController.getCurrentGamePoints() + 5);
             } else {
-                System.out.println("Incorrect Answer!");
-                feedbackLabel.getStyleClass().remove("correct");
-                feedbackLabel.getStyleClass().add("incorrect");
+                feedbackLabel.setStyle("-fx-text-fill: #d50102");
                 feedbackLabel.setText("Incorrect Answer!");
             }
 
             Question question = gameController.getNextQuestion();
-            if (question != null){
+            if (question != null) {
                 displayQuestion(question);
             } else {
                 setCenter(displayGameOver());

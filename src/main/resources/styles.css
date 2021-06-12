@@ -26,6 +26,12 @@
     -fx-text-fill: #f1f1f1;
 }
 
+.infoLabel {
+    -fx-font-size: 24px;
+    -fx-font-weight: normal;
+    -fx-text-fill: #f1f1f1;
+}
+
 .button {
     -fx-background-color: #526274;
     -fx-text-fill: #f1f1f1;
@@ -57,12 +63,4 @@
 .feedback {
     -fx-font-size: 19px;
     -fx-font-weight: bold;
-}
-
-.correct {
-    -fx-text-fill: #a6b401;
-}
-
-.incorrect {
-    -fx-text-fill: #d50102;
 }

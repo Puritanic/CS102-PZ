@@ -98,13 +98,13 @@ public class HomeView extends BorderPane implements BaseView {
 
             switch (selectedAction) {
                 case "Sign in":
-                    sc.activate(Views.LOGIN.name());
+                    sc.activate(sc.getScreen(Views.LOGIN.name()));
                     break;
                 case "Sign out":
                     ac.setPlayer(null);
                     break;
                 case "See Results":
-                    sc.activate(Views.RESULTS.name());
+                    sc.activate(sc.getScreen(Views.RESULTS.name()));
                     break;
                 case "Quick Play":
                 case "Play":

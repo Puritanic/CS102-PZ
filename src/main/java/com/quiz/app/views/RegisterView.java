@@ -20,24 +20,22 @@ public class RegisterView extends BorderPane implements BaseView {
         top.setAlignment(Pos.TOP_LEFT);
         Button backButton = new Button("Go Back");
         top.getChildren().add(backButton);
-
-        // Create the registration form pane
-        GridPane center = ViewUtils.createFormPane();
-        // Add UI controls to the registration form grid pane
-        addUIControls(center);
+        setTop(top);
 
         backButton.setOnAction(e -> {
             ScreenController sc = ScreenController.getScreenControllerInstance();
             sc.goBack();
         });
-
-        setTop(top);
-        setCenter(center);
+        resetView();
     }
 
     @Override
     public void resetView() {
-
+        // Create the registration form pane
+        GridPane center = ViewUtils.createFormPane();
+        // Add UI controls to the registration form grid pane
+        addUIControls(center);
+        setCenter(center);
     }
 
     private void addUIControls(GridPane gridPane) {
@@ -107,7 +105,7 @@ public class RegisterView extends BorderPane implements BaseView {
                 return;
             }
 
-            ViewUtils.showAlert(Alert.AlertType.CONFIRMATION, gridPane.getScene().getWindow(),
+            ViewUtils.showAlert(Alert.AlertType.INFORMATION, gridPane.getScene().getWindow(),
                     "Registration Successful!", "Welcome " + nameField.getText());
 
             PlayerController pc = new PlayerController();

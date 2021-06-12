@@ -25,6 +25,7 @@ public class ResultsView extends BorderPane implements BaseView {
         });
 
         setTop(top);
+        resetView();
     }
 
     @Override

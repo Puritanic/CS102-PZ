@@ -23,6 +23,17 @@ public class LoginView extends BorderPane implements BaseView {
         Button backButton = new Button("Go Back");
         top.getChildren().add(backButton);
 
+        backButton.setOnAction(e -> {
+            ScreenController sc = ScreenController.getScreenControllerInstance();
+            sc.goBack();
+        });
+
+        setTop(top);
+        resetView();
+    }
+
+    @Override
+    public void resetView() {
         // Create the registration form pane
         GridPane center = ViewUtils.createFormPane();
         // Add UI controls to the registration form grid pane
@@ -33,24 +44,13 @@ public class LoginView extends BorderPane implements BaseView {
         Button registerButton = new Button("Register");
         bottom.getChildren().add(registerButton);
 
-        backButton.setOnAction(e -> {
-            ScreenController sc = ScreenController.getScreenControllerInstance();
-            sc.goBack();
-        });
-
         registerButton.setOnAction(e -> {
             ScreenController sc = ScreenController.getScreenControllerInstance();
-            sc.activate(Views.REGISTER.name());
+            sc.activate(sc.getScreen(Views.REGISTER.name()));
         });
 
-        setTop(top);
         setCenter(center);
         setBottom(bottom);
-    }
-
-    @Override
-    public void resetView() {
-
     }
 
     private void addUIControls(GridPane gridPane) {

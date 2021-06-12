@@ -1,11 +1,9 @@
 package com.quiz.app.views;
 
 import com.quiz.app.AnswerButton;
-import com.quiz.app.controllers.AuthController;
-import com.quiz.app.controllers.GameController;
-import com.quiz.app.controllers.QuestionController;
-import com.quiz.app.controllers.ScreenController;
+import com.quiz.app.controllers.*;
 import com.quiz.entities.Answer;
+import com.quiz.entities.Player;
 import com.quiz.entities.Question;
 import com.quiz.enums.Views;
 import com.quiz.interfaces.BaseView;
@@ -134,7 +132,12 @@ public class GameView extends BorderPane implements BaseView {
         playerGreet.getStyleClass().add("infoLabel");
 
         if (ac.getPlayer() != null) {
-            playerGreet.setText("Congratulations, " + ac.getPlayer().getUsername());
+            Player player = ac.getPlayer();
+            playerGreet.setText("Congratulations, " + player.getUsername() + ".");
+            player.setTotalPoints(player.getTotalPoints() + gameController.getCurrentGamePoints());
+            player.setFinishedGames(player.getFinishedGames() + 1);
+            PlayerController pc = new PlayerController();
+            pc.updatePlayer(player);
         } else {
             playerGreet.setText("Register or login to save your points.");
         }

@@ -2,6 +2,7 @@ package com.quiz.DAO;
 
 import com.quiz.entities.Player;
 import com.quiz.exceptions.AuthException;
+import com.quiz.interfaces.PlayerDAO;
 import com.quiz.util.HibernateUtil;
 import com.quiz.util.PasswordUtils;
 import org.hibernate.Session;
@@ -11,7 +12,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-public class PlayerDAOImpl {
+public class PlayerDAOImpl implements PlayerDAO {
     public PlayerDAOImpl(){}
 
     public Player login(String email, String password) throws AuthException {
@@ -37,6 +38,13 @@ public class PlayerDAOImpl {
         Session s = HibernateUtil.getCurrentSession();
         s.beginTransaction();
         s.save(newPlayer);
+        s.getTransaction().commit();
+    }
+
+    public void updatePlayer(Player player) {
+        Session s = HibernateUtil.getCurrentSession();
+        s.beginTransaction();
+        s.update(player);
         s.getTransaction().commit();
     }
 }

@@ -9,8 +9,8 @@ JavaFX igra, koja bi učitavala pitanja sa remote servera, sa opcijama za login 
 - [x] Login
 - [x] Logout
 - [x] Registracija
-- [ ] Quick Play (anonimni korisnik, ne cuvaju se poeni i broj partija)
-- [ ] Play (ulogovani korisnik, cuvaju se poeni i broj partija)
+- [x] Quick Play (anonimni korisnik, ne cuvaju se poeni i broj partija)
+- [x] Play (ulogovani korisnik, cuvaju se poeni i broj partija)
 - [ ] Prikazivanje tabele rezultata
 - [ ] Admin funkcionalnost - dodavanje novih pitanja i odgovora, i modifikacija postojećih.
 - [ ] Animacije

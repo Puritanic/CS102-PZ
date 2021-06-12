@@ -27,4 +27,10 @@ public class PlayerController {
         AuthController.getAuthControllerInstance().setPlayer(newPlayer);
         ScreenController.getScreenControllerInstance().activate(Views.HOME.name());
     }
+
+    public void updatePlayer(Player player) {
+        System.out.println(player);
+
+        playerService.updatePlayer(player);
+    }
 }

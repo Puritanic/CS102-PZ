@@ -23,8 +23,7 @@ public class HomeView extends BorderPane implements BaseView {
         setPadding(new Insets(100, 100, 100, 100));
 
         Label welcomeMsg = new Label("Welcome to Java Quiz");
-        welcomeMsg.getStyleClass().add("welcomeMsg");
-        welcomeMsg.setTextFill(Color.web("#f1f1f1"));
+        welcomeMsg.getStyleClass().add("title");
 
         AuthController ac = AuthController.getAuthControllerInstance();
         boolean isAuthenticated = (ac.getPlayer() != null);
@@ -50,6 +49,11 @@ public class HomeView extends BorderPane implements BaseView {
 
         setTop(top);
         setCenter(center);
+    }
+
+    @Override
+    public void resetView() {
+
     }
 
     private void setButtons(boolean isAuthenticated) {

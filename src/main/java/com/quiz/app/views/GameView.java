@@ -4,13 +4,16 @@ import com.quiz.app.AnswerButton;
 import com.quiz.app.controllers.AuthController;
 import com.quiz.app.controllers.GameController;
 import com.quiz.app.controllers.QuestionController;
+import com.quiz.app.controllers.ScreenController;
 import com.quiz.entities.Answer;
 import com.quiz.entities.Question;
+import com.quiz.enums.Views;
 import com.quiz.interfaces.BaseView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -23,13 +26,18 @@ public class GameView extends BorderPane implements BaseView {
     private Label questionLabel;
     private Label feedbackLabel;
     private final AnswerButton[] answerButtons = new AnswerButton[3];
-    private final GameController gameController;
+    private GameController gameController;
 
     public GameView(){
         System.out.println("GameView loaded");
         getStyleClass().add("game");
-        setPadding(new Insets(100, 100, 100, 100));
+        setPadding(new Insets(100, 100, 50, 100));
 
+        resetView();
+    }
+
+    @Override
+    public void resetView() {
         setTop(buildQuestionLabel());
 
         setCenter(buildAnswerButtons());
@@ -104,8 +112,42 @@ public class GameView extends BorderPane implements BaseView {
         }
     }
 
-    private void finishGame(){
+    private VBox displayGameOver(){
+        questionLabel.setText("");
+        feedbackLabel.setText("");
+
         System.out.println("Game Over");
+        VBox vBox = new VBox();
+        vBox.setAlignment(Pos.CENTER);
+        vBox.setSpacing(100);
+        Label label = new Label("Game Over");
+        label.getStyleClass().add("title");
+
+        HBox buttons = new HBox();
+        buttons.setSpacing(20);
+        buttons.setAlignment(Pos.CENTER);
+        Button playAgainButton = new Button("Play Again");
+        playAgainButton.getStyleClass().add("secondaryButton");
+
+        playAgainButton.setOnAction(e -> {
+            System.out.println("Should replay");
+            ScreenController sc = ScreenController.getScreenControllerInstance();
+            sc.activate(sc.getScreen(Views.GAME.name()));
+        });
+
+        Button goHomeButton = new Button("Home");
+        goHomeButton.getStyleClass().add("secondaryButton");
+
+        goHomeButton.setOnAction(e -> {
+            ScreenController sc = ScreenController.getScreenControllerInstance();
+            sc.activate(Views.HOME.name());
+        });
+
+        buttons.getChildren().addAll(playAgainButton, goHomeButton);
+
+        vBox.getChildren().addAll(label, buttons);
+
+        return vBox;
     }
 
     private class ButtonHandler implements EventHandler<ActionEvent> {
@@ -134,7 +176,7 @@ public class GameView extends BorderPane implements BaseView {
             if (question != null){
                 displayQuestion(question);
             } else {
-                finishGame();
+                setCenter(displayGameOver());
             }
         }
     }

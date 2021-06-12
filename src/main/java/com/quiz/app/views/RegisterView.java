@@ -35,6 +35,11 @@ public class RegisterView extends BorderPane implements BaseView {
         setCenter(center);
     }
 
+    @Override
+    public void resetView() {
+
+    }
+
     private void addUIControls(GridPane gridPane) {
         // Add Header
         Label headerLabel = new Label("Registration");

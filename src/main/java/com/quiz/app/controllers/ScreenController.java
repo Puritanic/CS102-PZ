@@ -2,7 +2,9 @@ package com.quiz.app.controllers;
 
 import com.quiz.app.views.*;
 import com.quiz.enums.Views;
+import com.quiz.interfaces.BaseView;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 import java.util.HashMap;
@@ -32,6 +34,10 @@ public class ScreenController {
         ScreenController.screenControllerInstance = screenControllerInstance;
     }
 
+    public <T extends BorderPane & BaseView> T getScreen(String screenName){
+        return (T) screenMap.get(screenName);
+    }
+
     public void goBack(){
         history.pop();
         Pane currentScreen = history.peek();
@@ -43,6 +49,13 @@ public class ScreenController {
         Pane currentScreen = screenMap.get(name);
         history.push(currentScreen);
         main.setRoot(currentScreen);
+        main.getRoot().getStylesheets().add("styles.css");
+    }
+
+    public <T extends BorderPane & BaseView> void activate(T view) {
+        view.resetView();
+        history.push(view);
+        main.setRoot(view);
         main.getRoot().getStylesheets().add("styles.css");
     }
 }

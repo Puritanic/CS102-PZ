@@ -48,6 +48,11 @@ public class LoginView extends BorderPane implements BaseView {
         setBottom(bottom);
     }
 
+    @Override
+    public void resetView() {
+
+    }
+
     private void addUIControls(GridPane gridPane) {
         // Add Header
         Label headerLabel = new Label("Login");

@@ -20,9 +20,10 @@
     -fx-font-weight: bold;
 }
 
-.welcomeMsg {
+.title {
     -fx-font-size: 42px;
     -fx-font-weight: bold;
+    -fx-text-fill: #f1f1f1;
 }
 
 .button {
@@ -34,6 +35,10 @@
     -fx-font-size: 18px;
     -fx-font-weight: bold;
     -fx-cursor: hand;
+}
+
+.secondaryButton {
+    -fx-background-color: #3D4956;
 }
 
 .answerButton {

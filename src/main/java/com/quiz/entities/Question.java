@@ -16,7 +16,7 @@ public class Question {
     private String question;
 
     @Column(name = "correct_answer_id")
-    private String correctAnswerId;
+    private int correctAnswerId;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "question", cascade = CascadeType.ALL)
     private List<Answer> answers = new ArrayList<>();
@@ -52,11 +52,11 @@ public class Question {
         this.answers = answers;
     }
 
-    public String getCorrectAnswerId() {
+    public int getCorrectAnswerId() {
         return correctAnswerId;
     }
 
-    public void setCorrectAnswerId(String correctAnswerId) {
+    public void setCorrectAnswerId(int correctAnswerId) {
         this.correctAnswerId = correctAnswerId;
     }
 

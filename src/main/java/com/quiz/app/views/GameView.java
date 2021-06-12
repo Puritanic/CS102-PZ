@@ -11,7 +11,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -23,8 +22,8 @@ import java.util.List;
 public class GameView extends BorderPane implements BaseView {
     private Label questionLabel;
     private Label feedbackLabel;
-    private AnswerButton[] answerButtons = new AnswerButton[3];
-    private GameController gameController;
+    private final AnswerButton[] answerButtons = new AnswerButton[3];
+    private final GameController gameController;
 
     public GameView(){
         System.out.println("GameView loaded");
@@ -106,17 +105,37 @@ public class GameView extends BorderPane implements BaseView {
     }
 
     private void finishGame(){
-
+        System.out.println("Game Over");
     }
 
-    private static class ButtonHandler implements EventHandler<ActionEvent> {
+    private class ButtonHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
             AnswerButton selectedBtn = (AnswerButton) event.getSource();
             String selectedAnswer = selectedBtn.getText();
             int selectedAnswerId = selectedBtn.getAnswerId();
+            Question currentQuestion = gameController.getCurrentQuestion();
 
-            System.out.println(selectedAnswer + " " + selectedAnswerId);
+            System.out.println(selectedAnswer + " " + selectedAnswerId + " : " + currentQuestion.getCorrectAnswerId());
+
+            if (currentQuestion.getCorrectAnswerId() == selectedAnswerId){
+                System.out.println("Correct Answer!");
+                feedbackLabel.getStyleClass().remove("incorrect");
+                feedbackLabel.getStyleClass().add("correct");
+                feedbackLabel.setText("Correct Answer!");
+            } else {
+                System.out.println("Incorrect Answer!");
+                feedbackLabel.getStyleClass().remove("correct");
+                feedbackLabel.getStyleClass().add("incorrect");
+                feedbackLabel.setText("Incorrect Answer!");
+            }
+
+            Question question = gameController.getNextQuestion();
+            if (question != null){
+                displayQuestion(question);
+            } else {
+                finishGame();
+            }
         }
     }
 }

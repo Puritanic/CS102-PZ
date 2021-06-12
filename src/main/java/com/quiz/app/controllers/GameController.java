@@ -54,6 +54,15 @@ public class GameController {
         return nextQuestion;
     }
 
+    public Question getCurrentQuestion(){
+        try{
+            return gameQuestions.get((currentQuestionIndex -1));
+        } catch (IndexOutOfBoundsException ex){
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
     public Game getGame() {
         return game;
     }

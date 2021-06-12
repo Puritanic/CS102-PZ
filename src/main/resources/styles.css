@@ -48,3 +48,16 @@
     -fx-font-weight: bold;
     -fx-text-fill: #f1f1f1;
 }
+
+.feedback {
+    -fx-font-size: 19px;
+    -fx-font-weight: bold;
+}
+
+.correct {
+    -fx-text-fill: #a6b401;
+}
+
+.incorrect {
+    -fx-text-fill: #d50102;
+}

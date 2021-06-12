@@ -18,7 +18,7 @@ public class Question {
     @Column(name = "correct_answer_id")
     private String correctAnswerId;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "question", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "question", cascade = CascadeType.ALL)
     private List<Answer> answers = new ArrayList<>();
 
     public Question(){}

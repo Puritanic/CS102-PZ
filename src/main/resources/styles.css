@@ -6,6 +6,10 @@
     -fx-background-color: #3D4956;
 }
 
+.game {
+    -fx-background-color: #526274;
+}
+
 .login .label, .register .label {
     -fx-text-fill: #f1f1f1;
     -fx-font-size: 18px;
@@ -30,4 +34,17 @@
     -fx-font-size: 18px;
     -fx-font-weight: bold;
     -fx-cursor: hand;
+}
+
+.answerButton {
+    -fx-border-color: #f1f1f1;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-font-size: 20px;
+}
+
+.question {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #f1f1f1;
 }

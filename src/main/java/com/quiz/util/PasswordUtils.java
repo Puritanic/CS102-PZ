@@ -15,7 +15,6 @@ public class PasswordUtils {
 	}
 	
 	/**
-	 * Checks an unencrypted (plain) password against an encrypted one (a digest) to see if they match. 
 	 * Uporedjuje enkriptovanu i ne-enkriptovanu šifru, i proverava da li se slažu.
 	 * @param plainText - plain text šifra
 	 * @param encryptedPassword - enkriptovana šifra

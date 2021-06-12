@@ -2,7 +2,7 @@
     -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #3D4956, #000);
 }
 
-.login, .register {
+.login, .register, .results {
     -fx-background-color: #3D4956;
 }
 
@@ -63,4 +63,53 @@
 .feedback {
     -fx-font-size: 19px;
     -fx-font-weight: bold;
+}
+
+.table-view,
+.table-view .column-header-background .filler,
+.table-view .column-header-background .label,
+.table-view .corner,
+.table-view .table-cell,
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background .label{
+    -fx-text-fill: #f1f1f1;
+    -fx-font-size: 16px;
+}
+
+.table-view .table-cell {
+    -fx-text-fill:  #f1f1f1;
+    -fx-font-size: 16px;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: linear-gradient(to bottom, #3D4956, #93f9b944);
+    -fx-padding: 5px;
+}
+
+.table-view .table-cell {
+    -fx-padding: 2 0 2 10px;
+}
+
+.table-row-cell:odd{
+    -fx-background-color: #93f9b911;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+.table-row-cell:even{
+    -fx-background-color: #1dbbdd11;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #93f9b911;
+    -fx-text-background-color: #81c483;
+}
+
+.table-row-cell: highlighted {
+    -fx-background-color: #81c483;
+    -fx-background-radius: 15px;
 }

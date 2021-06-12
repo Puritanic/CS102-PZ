@@ -22,7 +22,7 @@ public class Main extends Application {
 
         StackPane root = new StackPane();
 
-        Scene scene = new Scene(root, 800, 650);
+        Scene scene = new Scene(root, 900, 650);
         ScreenController screenController = new ScreenController(scene);
         screenController.activate(Views.HOME.name());
         primaryStage.setScene(scene);

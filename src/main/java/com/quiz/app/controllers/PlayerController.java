@@ -5,6 +5,8 @@ import com.quiz.entities.Player;
 import com.quiz.enums.Views;
 import com.quiz.exceptions.AuthException;
 import com.quiz.util.PasswordUtils;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class PlayerController {
     private final PlayerDAOImpl playerService = new PlayerDAOImpl();
@@ -32,5 +34,9 @@ public class PlayerController {
         System.out.println(player);
 
         playerService.updatePlayer(player);
+    }
+
+    public ObservableList<Player> getPlayerData(){
+        return FXCollections.observableList(playerService.getPlayerData());
     }
 }

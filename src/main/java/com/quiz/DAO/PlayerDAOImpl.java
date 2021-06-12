@@ -11,6 +11,7 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.util.List;
 
 public class PlayerDAOImpl implements PlayerDAO {
     public PlayerDAOImpl(){}
@@ -46,5 +47,16 @@ public class PlayerDAOImpl implements PlayerDAO {
         s.beginTransaction();
         s.update(player);
         s.getTransaction().commit();
+    }
+
+    @Override
+    public List<Player> getPlayerData() {
+        Session s = HibernateUtil.getCurrentSession();
+        s.beginTransaction();
+
+        List<Player> studentData = s.createQuery("from Player").getResultList();
+        s.getTransaction().commit();
+
+        return studentData;
     }
 }

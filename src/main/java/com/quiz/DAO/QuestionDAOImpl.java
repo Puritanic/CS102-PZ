@@ -1,15 +1,17 @@
 package com.quiz.DAO;
 
 import com.quiz.entities.Question;
+import com.quiz.interfaces.QuestionDAO;
 import com.quiz.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.util.List;
 
-public class QuestionDAOImpl {
+public class QuestionDAOImpl implements QuestionDAO {
     public QuestionDAOImpl(){}
 
+    @Override
     public List<Question> getQuestions() {
         Session session = HibernateUtil.getCurrentSession();
         Transaction tx =  session.beginTransaction();

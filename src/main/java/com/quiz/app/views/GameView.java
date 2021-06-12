@@ -1,12 +1,13 @@
 package com.quiz.app.views;
 
-import com.quiz.app.AnswerButton;
 import com.quiz.app.controllers.*;
 import com.quiz.entities.Answer;
 import com.quiz.entities.Player;
 import com.quiz.entities.Question;
 import com.quiz.enums.Views;
 import com.quiz.interfaces.BaseView;
+import com.quiz.models.AnswerButton;
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -17,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
 import java.util.List;
 
@@ -25,6 +27,9 @@ public class GameView extends BorderPane implements BaseView {
     private Label questionLabel;
     private Label feedbackLabel;
     private GameController gameController;
+    private final FadeTransition fadeInOut = new FadeTransition(
+            Duration.millis(1200)
+    );
 
     public GameView() {
         System.out.println("GameView loaded");
@@ -33,7 +38,7 @@ public class GameView extends BorderPane implements BaseView {
     }
 
     @Override
-    public void resetView() {
+    public void render() {
         setTop(buildQuestionLabel());
 
         setCenter(buildAnswerButtons());
@@ -71,6 +76,12 @@ public class GameView extends BorderPane implements BaseView {
         feedbackLabel = new Label();
         feedbackLabel.getStyleClass().add("feedback");
         hBox.getChildren().add(feedbackLabel);
+        fadeInOut.setNode(feedbackLabel);
+
+        fadeInOut.setFromValue(0.0);
+        fadeInOut.setToValue(1.0);
+        fadeInOut.setCycleCount(2);
+        fadeInOut.setAutoReverse(true);
 
         return hBox;
     }
@@ -179,20 +190,19 @@ public class GameView extends BorderPane implements BaseView {
         @Override
         public void handle(ActionEvent event) {
             AnswerButton selectedBtn = (AnswerButton) event.getSource();
-            String selectedAnswer = selectedBtn.getText();
             int selectedAnswerId = selectedBtn.getAnswerId();
             Question currentQuestion = gameController.getCurrentQuestion();
-
-            System.out.println(selectedAnswerId + " : " + currentQuestion.getCorrectAnswerId());
 
             feedbackLabel.setStyle(null);
             if (currentQuestion.getCorrectAnswerId() == selectedAnswerId) {
                 feedbackLabel.setText("Correct Answer!");
                 feedbackLabel.setStyle("-fx-text-fill: #a6b401");
+                fadeInOut.playFromStart();
                 gameController.setCurrentGamePoints(gameController.getCurrentGamePoints() + 5);
             } else {
-                feedbackLabel.setStyle("-fx-text-fill: #d50102");
                 feedbackLabel.setText("Incorrect Answer!");
+                feedbackLabel.setStyle("-fx-text-fill: #d50102");
+                fadeInOut.playFromStart();
             }
 
             Question question = gameController.getNextQuestion();

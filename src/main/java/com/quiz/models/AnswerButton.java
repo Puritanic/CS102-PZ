@@ -1,4 +1,4 @@
-package com.quiz.app;
+package com.quiz.models;
 
 
 import javafx.scene.control.Button;

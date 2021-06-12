@@ -1,4 +1,4 @@
-package com.quiz.app;
+package com.quiz.models;
 
 import com.quiz.entities.Player;
 import com.quiz.entities.Question;

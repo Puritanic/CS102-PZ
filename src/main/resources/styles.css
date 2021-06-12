@@ -61,7 +61,7 @@
 }
 
 .feedback {
-    -fx-font-size: 19px;
+    -fx-font-size: 20px;
     -fx-font-weight: bold;
 }
 
@@ -107,9 +107,4 @@
 .table-row-cell:hover {
     -fx-background-color: #93f9b911;
     -fx-text-background-color: #81c483;
-}
-
-.table-row-cell: highlighted {
-    -fx-background-color: #81c483;
-    -fx-background-radius: 15px;
 }

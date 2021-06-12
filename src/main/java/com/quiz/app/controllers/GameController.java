@@ -1,6 +1,6 @@
 package com.quiz.app.controllers;
 
-import com.quiz.app.Game;
+import com.quiz.models.Game;
 import com.quiz.entities.Player;
 import com.quiz.entities.Question;
 

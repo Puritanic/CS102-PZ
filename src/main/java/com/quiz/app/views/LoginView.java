@@ -29,11 +29,11 @@ public class LoginView extends BorderPane implements BaseView {
         });
 
         setTop(top);
-        resetView();
+        render();
     }
 
     @Override
-    public void resetView() {
+    public void render() {
         // Create the registration form pane
         GridPane center = ViewUtils.createFormPane();
         // Add UI controls to the registration form grid pane

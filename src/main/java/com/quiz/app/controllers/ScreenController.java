@@ -53,7 +53,7 @@ public class ScreenController {
     }
 
     public <T extends BorderPane & BaseView> void activate(T view) {
-        view.resetView();
+        view.render();
         history.push(view);
         main.setRoot(view);
         main.getRoot().getStylesheets().add("styles.css");

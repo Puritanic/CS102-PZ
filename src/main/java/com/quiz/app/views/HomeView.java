@@ -52,7 +52,7 @@ public class HomeView extends BorderPane implements BaseView {
     }
 
     @Override
-    public void resetView() {
+    public void render() {
 
     }
 

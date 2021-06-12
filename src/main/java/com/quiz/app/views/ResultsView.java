@@ -38,11 +38,11 @@ public class ResultsView extends BorderPane implements BaseView {
 
         setTop(top);
         setCenter(center);
-        resetView();
+        render();
     }
 
     @Override
-    public void resetView() {
+    public void render() {
         populateTable();
     }
 

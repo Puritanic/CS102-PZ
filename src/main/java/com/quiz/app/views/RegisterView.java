@@ -88,7 +88,7 @@ public class RegisterView extends BorderPane implements BaseView {
             }
             if(emailField.getText().isEmpty()) {
                 ViewUtils.showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(),
-                        "Form Error!", "Please enter your email id");
+                        "Form Error!", "Please enter your email");
                 return;
             }
             if(passwordField.getText().isEmpty()) {

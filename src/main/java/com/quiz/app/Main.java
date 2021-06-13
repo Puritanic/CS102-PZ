@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Java kviz");
+        primaryStage.setTitle("CS102 - Java quiz");
         HibernateUtil.createSessionFactory();
         new AuthController();
 

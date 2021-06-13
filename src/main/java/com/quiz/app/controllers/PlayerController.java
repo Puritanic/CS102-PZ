@@ -31,8 +31,6 @@ public class PlayerController {
     }
 
     public void updatePlayer(Player player) {
-        System.out.println(player);
-
         playerService.updatePlayer(player);
     }
 

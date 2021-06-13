@@ -34,7 +34,12 @@ public class Question {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "question", cascade = CascadeType.ALL)
     private List<Answer> answers = new ArrayList<>();
 
-    public Question(){}
+    public Question() {
+    }
+
+    public Question(String question) {
+        this.question = question;
+    }
 
     public Question(String question, List<Answer> answers) {
         this.question = question;

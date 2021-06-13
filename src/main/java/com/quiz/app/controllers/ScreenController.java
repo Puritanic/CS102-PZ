@@ -8,6 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 /**
@@ -18,9 +19,9 @@ import java.util.Stack;
  */
 public class ScreenController {
     private static ScreenController screenControllerInstance = null;
-    private final HashMap<String, Pane> screenMap = new HashMap<>();
+    private Map<String, Pane> screenMap = new HashMap<>();
     private final Scene main;
-    private final Stack<Pane> history = new Stack<>();
+    private Stack<Pane> history = new Stack<>();
 
     public ScreenController(Scene main) {
         this.main = main;
@@ -29,6 +30,11 @@ public class ScreenController {
         screenMap.put(Views.LOGIN.name(), new LoginView());
         screenMap.put(Views.REGISTER.name(), new RegisterView());
         screenMap.put(Views.RESULTS.name(), new ResultsView());
+        screenControllerInstance = this;
+    }
+    public ScreenController(Scene main, Map<String, Pane> screenMap) {
+        this.screenMap = screenMap;
+        this.main = main;
         screenControllerInstance = this;
     }
 
@@ -48,7 +54,7 @@ public class ScreenController {
      * @param screenName - ime ekrana koji želimo da nadjemo, koriste se enums.Views.
      * @param <T> - generički tip klase, koja nasledjuje BorderPane i implementira BaseView,
      *           ovo su u suštini *View klase iz views/ paketa.
-     * @return
+     * @return BorderPane
      */
     public <T extends BorderPane & BaseView> T getScreen(String screenName){
         return (T) screenMap.get(screenName);
@@ -86,5 +92,21 @@ public class ScreenController {
         history.push(view);
         main.setRoot(view);
         main.getRoot().getStylesheets().add("styles.css");
+    }
+
+    public Map<String, Pane> getScreenMap() {
+        return screenMap;
+    }
+
+    public void setScreenMap(Map<String, Pane> screenMap) {
+        this.screenMap = screenMap;
+    }
+
+    public Stack<Pane> getHistory() {
+        return history;
+    }
+
+    public void setHistory(Stack<Pane> history) {
+        this.history = history;
     }
 }

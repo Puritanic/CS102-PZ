@@ -24,10 +24,15 @@ public class Answer {
      * zato što pitanje može biti jedno ali imati više odgovora.
      */
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="question_id", nullable=false)
+    @JoinColumn(name = "question_id", nullable = false)
     private Question question;
 
-    public Answer(){}
+    public Answer() {
+    }
+
+    public Answer(String answer) {
+        this.answer = answer;
+    }
 
     public Answer(String answer, Question question) {
         this.answer = answer;

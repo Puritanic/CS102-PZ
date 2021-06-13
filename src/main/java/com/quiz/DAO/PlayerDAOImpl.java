@@ -57,7 +57,7 @@ public class PlayerDAOImpl implements PlayerDAO {
         Session s = HibernateUtil.getCurrentSession();
         s.beginTransaction();
 
-        List<Player> studentData = s.createQuery("from Player").getResultList();
+        List<Player> studentData = s.createQuery("from Player p ORDER BY p.totalPoints DESC").getResultList();
         s.getTransaction().commit();
 
         return studentData;

@@ -29,7 +29,7 @@ toString metode.
 - [x] Java collections framework (JCF): liste, mape ili setove
 - [x] Obraditi sve izuzetke u projektu
 - [x] Java Docs (Komentare koda)
-- [ ] JUnit testove za svaku klasu logike
+- [x] JUnit testove za svaku klasu logike
 - [ ] Dokument koji opisuje funkcionalnosti aplikacije kao i uputstvo korišćenja
 
 7 poena

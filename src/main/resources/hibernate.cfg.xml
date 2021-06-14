@@ -8,12 +8,12 @@
 
         <!-- JDBC Database connection settings -->
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/cs102pz?serverTimezone=UTC</property>
-        <property name="connection.username">darko</property>
-        <property name="connection.password">Test123$</property>
+        <property name="connection.url">jdbc:mysql://db-mysql-cs102-71084-do-user-2992259-0.b.db.ondigitalocean.com:25060/defaultdb</property>
+        <property name="connection.username">doadmin</property>
+        <property name="connection.password">jtxousvgjhajarta</property>
 
         <!-- JDBC connection pool settings ... using built-in test pool -->
-        <property name="connection.pool_size">1</property>
+        <property name="connection.pool_size">3</property>
 
         <!-- Select our SQL dialect -->
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>

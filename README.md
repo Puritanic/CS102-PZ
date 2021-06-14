@@ -33,5 +33,5 @@ toString metode.
 - [x] Dokument koji opisuje funkcionalnosti aplikacije kao i uputstvo korišćenja
 
 7 poena
-- [ ] Uzimanje informacija sa interneta ili
+- [x] Uzimanje informacija sa interneta ili
 - [ ] Mrežno programiranje (neka vrsta klijent server aplikacije)

@@ -30,6 +30,7 @@ public class ScreenController {
         screenMap.put(Views.LOGIN.name(), new LoginView());
         screenMap.put(Views.REGISTER.name(), new RegisterView());
         screenMap.put(Views.RESULTS.name(), new ResultsView());
+        screenMap.put(Views.ADMIN.name(), new AdminView());
         screenControllerInstance = this;
     }
     public ScreenController(Scene main, Map<String, Pane> screenMap) {

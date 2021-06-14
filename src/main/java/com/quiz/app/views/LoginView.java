@@ -99,11 +99,13 @@ public class LoginView extends BorderPane implements BaseView {
             try {
                 pc.loginPlayer(emailField.getText(), passwordField.getText());
             } catch (AuthException ex){
-                ex.printStackTrace();
+                System.out.println(ex.getMessage());
+
                 ViewUtils.showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(),
                         "Login Error!", "Bad credentials. Please check your email and password");
             } catch (Exception ex){
-                ex.printStackTrace();
+                System.out.println(ex.getMessage());
+
                 ViewUtils.showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(),
                         "Login Error!", "Something went wrong. Please try again.");
             }

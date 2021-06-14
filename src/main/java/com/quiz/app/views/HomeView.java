@@ -2,6 +2,7 @@ package com.quiz.app.views;
 
 import com.quiz.app.controllers.AuthController;
 import com.quiz.app.controllers.ScreenController;
+import com.quiz.entities.Player;
 import com.quiz.enums.Views;
 import com.quiz.interfaces.BaseView;
 import javafx.event.ActionEvent;
@@ -28,14 +29,12 @@ public class HomeView extends BorderPane implements BaseView {
         welcomeMsg.getStyleClass().add("title");
 
         AuthController ac = AuthController.getAuthControllerInstance();
-        boolean isAuthenticated = (ac.getPlayer() != null);
-
-        setButtons(isAuthenticated);
+        setButtons(ac.getPlayer());
 
         // Listener potreban za osmatranje promena u auth state-u AuthControllera,
         // da bi početna strana prikazala odgovarajući UI u zavisnosti da li je korisnik ulogvan ili ne
         AuthController.getAuthControllerInstance().playerProperty().addListener((obs, oldPlayer, newPlayer) ->
-                setButtons((newPlayer != null))
+                setButtons(newPlayer)
         );
 
         HBox top = new HBox();
@@ -57,16 +56,25 @@ public class HomeView extends BorderPane implements BaseView {
 
     @Override
     public void render() {
-
     }
 
     /**
      * Metoda odgovorna za prikazivanje odgovarajućeg seta buttons-a.
-     * @param isAuthenticated bool, auth state igrača
+     *
+     * @param player Player, igrač
      */
-    private void setButtons(boolean isAuthenticated) {
+    private void setButtons(Player player) {
+        boolean isAuthenticated = (player != null);
         if (isAuthenticated) {
-            setBottom(withAuthButton(loadMainButtons(true), "Sign out"));
+            boolean isAdmin = player.isAdmin();
+
+            if (isAdmin) {
+                setBottom(withAuthButton(
+                        withAuthButton(loadMainButtons(true), "Admin")
+                        , "Sign out"));
+            } else {
+                setBottom(withAuthButton(loadMainButtons(true), "Sign out"));
+            }
         } else {
             setBottom(withAuthButton(loadMainButtons(false), "Sign in"));
         }
@@ -74,7 +82,8 @@ public class HomeView extends BorderPane implements BaseView {
 
     /**
      * "Dekorator" metoda koja dodaje dugme sa btnTxt tekstom u prosledjeni node (pane)
-     * @param pane - node u koji treba da se ubaci dugme
+     *
+     * @param pane   - node u koji treba da se ubaci dugme
      * @param btnTxt - tekst koji će biti prikazan na dugmetu
      * @return HBox
      */
@@ -88,6 +97,7 @@ public class HomeView extends BorderPane implements BaseView {
 
     /**
      * Metoda odgovorna za prikazivanje glavnog seta buttons-a na početnoj strani
+     *
      * @param isAuthenticated - auth state igrača
      * @return HBox
      */
@@ -127,6 +137,9 @@ public class HomeView extends BorderPane implements BaseView {
                     break;
                 case "See Results":
                     sc.show(sc.getScreen(Views.RESULTS.name()));
+                    break;
+                case "Admin":
+                    sc.show(sc.getScreen(Views.ADMIN.name()));
                     break;
                 case "Quick Play":
                 case "Play":

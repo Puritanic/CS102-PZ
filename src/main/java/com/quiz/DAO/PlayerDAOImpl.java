@@ -17,25 +17,29 @@ import java.util.List;
  * Data Access Object za Player klasu. Ova klasa se koristi u Player kontroleru za komunikaciju sa bazom podataka.
  */
 public class PlayerDAOImpl implements PlayerDAO {
-    public PlayerDAOImpl(){}
+    public PlayerDAOImpl() {
+    }
 
     public Player login(String email, String password) throws AuthException {
         Session session = HibernateUtil.getCurrentSession();
         session.beginTransaction();
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Player> query = builder.createQuery(Player.class);
-        Root<Player> root = query.from(Player.class);
-        query.where(builder.equal(root.get("email"), email));
-        TypedQuery<Player> q = session.createQuery(query);
-        Player result =  q.getSingleResult();
-        session.getTransaction().commit();
 
-        boolean correctPass = PasswordUtils.checkPassword(password, result.getPassword());
+        try {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Player> query = builder.createQuery(Player.class);
+            Root<Player> root = query.from(Player.class);
+            query.where(builder.equal(root.get("email"), email));
+            TypedQuery<Player> q = session.createQuery(query);
+            Player result = q.getSingleResult();
+            boolean correctPass = PasswordUtils.checkPassword(password, result.getPassword());
 
-        if(!correctPass){
-            throw new AuthException("Login Failed");
+            if (!correctPass) {
+                throw new AuthException("Login Failed");
+            }
+            return result;
+        } finally {
+            session.getTransaction().commit();
         }
-        return result;
     }
 
     public void register(Player newPlayer) {

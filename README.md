@@ -12,7 +12,7 @@ JavaFX igra, koja bi učitavala pitanja sa remote servera, sa opcijama za login 
 - [x] Quick Play (anonimni korisnik, ne cuvaju se poeni i broj partija)
 - [x] Play (ulogovani korisnik, cuvaju se poeni i broj partija)
 - [x] Prikazivanje tabele rezultata
-- [ ] Admin funkcionalnost - dodavanje novih pitanja i odgovora, i modifikacija postojećih.
+- [x] Admin funkcionalnost - dodavanje novih pitanja i odgovora, ~i modifikacija postojećih~.
 - [x] Animacije
 
 ## Zahtevi
@@ -30,7 +30,7 @@ toString metode.
 - [x] Obraditi sve izuzetke u projektu
 - [x] Java Docs (Komentare koda)
 - [x] JUnit testove za svaku klasu logike
-- [ ] Dokument koji opisuje funkcionalnosti aplikacije kao i uputstvo korišćenja
+- [x] Dokument koji opisuje funkcionalnosti aplikacije kao i uputstvo korišćenja
 
 7 poena
 - [ ] Uzimanje informacija sa interneta ili

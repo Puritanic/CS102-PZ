@@ -1,5 +1,6 @@
 package com.quiz.DAO;
 
+import com.quiz.entities.Answer;
 import com.quiz.entities.Question;
 import com.quiz.interfaces.QuestionDAO;
 import com.quiz.util.HibernateUtil;
@@ -24,5 +25,28 @@ public class QuestionDAOImpl implements QuestionDAO {
         tx.commit();
 
         return questions;
+    }
+
+    @Override
+    public void saveQuestion(Question q, List<Answer> answers, int answerIdx) {
+        Session session = HibernateUtil.getCurrentSession();
+        Transaction tx =  session.beginTransaction();
+
+        try {
+            session.save(q);
+
+            for (Answer a : answers) {
+                a.setQuestion(q);
+                session.save(a);
+            }
+
+            Answer cA = answers.get(answerIdx);
+            q.setCorrectAnswerId(cA.getId());
+            session.update(q);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        } finally {
+            tx.commit();
+        }
     }
 }

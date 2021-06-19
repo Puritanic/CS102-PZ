@@ -8,12 +8,12 @@ public class NumericInputTest {
     public JavaFXThreadingRule javafxRule = new JavaFXThreadingRule();
 
     @Test
-    public void allowsOnlyIntegers(){
+    public void allowsOnlyIntegers() {
         // TODO - can't be tested with jUnit
     }
 
     @Test
-    public void allowsOnlyIntegersinRange(){
+    public void allowsOnlyIntegersinRange() {
         // TODO - can't be tested with jUnit
     }
 }

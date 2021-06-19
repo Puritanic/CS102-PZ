@@ -12,7 +12,7 @@ import java.util.List;
 
 public class GameControllerTest {
     @Test
-    public void testQuickGameInit(){
+    public void testQuickGameInit() {
         List<Answer> aList = new ArrayList<>();
         List<Question> qList = new ArrayList<>();
         Question q = new Question("Pitanje?");
@@ -35,7 +35,7 @@ public class GameControllerTest {
     }
 
     @Test
-    public void testGameInitWithPlayer(){
+    public void testGameInitWithPlayer() {
         List<Answer> aList = new ArrayList<>();
         List<Question> qList = new ArrayList<>();
         Player p = new Player("test_player", "test@test.com", "pass", false);

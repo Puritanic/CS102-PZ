@@ -4,11 +4,6 @@ import com.quiz.DAO.PlayerDAOImpl;
 import com.quiz.app.controllers.AuthController;
 import com.quiz.app.controllers.ScreenController;
 import com.quiz.entities.Player;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.mockito.Mockito.*;
-
 import com.quiz.exceptions.AuthException;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,6 +11,10 @@ import org.mockito.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.mockito.Mockito.*;
 
 
 public class PlayerControllerTest {
@@ -47,7 +46,7 @@ public class PlayerControllerTest {
     }
 
     @Test
-    public void registerPlayerTest(){
+    public void registerPlayerTest() {
         Player player = new Player("test_username", "test@test.com", "passss", false);
 
         playerServiceTestMock.register(player);
@@ -63,7 +62,7 @@ public class PlayerControllerTest {
     }
 
     @Test
-    public void updatePlayerTest(){
+    public void updatePlayerTest() {
         Player player = new Player("test_username", "test@test.com", "passss", false);
 
         playerServiceTestMock.updatePlayer(player);
@@ -79,7 +78,7 @@ public class PlayerControllerTest {
     }
 
     @Test
-    public void getPlayerDataTest(){
+    public void getPlayerDataTest() {
         List<Player> players = new ArrayList<>();
         when(playerServiceTestMock.getPlayerData()).thenReturn(players);
         org.hamcrest.MatcherAssert.assertThat(playerServiceTestMock.getPlayerData(), is(notNullValue()));

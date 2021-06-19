@@ -1,16 +1,14 @@
 package com.quiz;
 
-import java.util.concurrent.CountDownLatch;
-
-import javax.swing.SwingUtilities;
-
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
-
 import org.junit.Rule;
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
+
+import javax.swing.*;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * A JUnit {@link Rule} for running tests on the JavaFX thread and performing
@@ -39,17 +37,16 @@ public class JavaFXThreadingRule implements TestRule {
     private static class OnJFXThreadStatement extends Statement {
 
         private final Statement statement;
+        private Throwable rethrownException = null;
 
         public OnJFXThreadStatement(Statement aStatement) {
             statement = aStatement;
         }
 
-        private Throwable rethrownException = null;
-
         @Override
         public void evaluate() throws Throwable {
 
-            if(!jfxIsSetup) {
+            if (!jfxIsSetup) {
                 setupJavaFX();
 
                 jfxIsSetup = true;
@@ -66,13 +63,14 @@ public class JavaFXThreadingRule implements TestRule {
                         rethrownException = e;
                     }
                     countDownLatch.countDown();
-                }});
+                }
+            });
 
             countDownLatch.await();
 
             // if an exception was thrown by the statement during evaluation,
             // then re-throw it to fail the test
-            if(rethrownException != null) {
+            if (rethrownException != null) {
                 throw rethrownException;
             }
         }

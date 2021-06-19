@@ -5,7 +5,8 @@ import org.jasypt.util.password.StrongPasswordEncryptor;
 /**
  * Util klasa zadužena za enkripciju i dekripciju teksta.
  */
-public class PasswordUtils {
+public final class PasswordUtils {
+	private PasswordUtils(){}
 	/**
 	 * Instanca StrongPasswordEncryptor klase, koju koristimo za enkripciju i dekripciju šifara
 	 */

@@ -18,7 +18,6 @@ public class QuestionControllerTest {
     @Mock
     private final QuestionDAOImpl questionServiceMock = new QuestionDAOImpl();
 
-
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);

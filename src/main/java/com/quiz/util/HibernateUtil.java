@@ -11,7 +11,7 @@ import com.quiz.entities.Question;
  * Util klasa za Hibernate, služi za inicijalno povezivanje sa bazom padataka
  * i za izvršavanje svih transakcija u toku rada aplikacije.
  */
-public class HibernateUtil {
+public final class HibernateUtil {
     /**
      * instanca Hibernate SessionFactory klase, koja je inicijalizovana samo jedno u toku rada aplikacije
      */

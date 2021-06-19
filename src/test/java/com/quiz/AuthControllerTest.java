@@ -8,7 +8,7 @@ import org.junit.Test;
 
 public class AuthControllerTest {
     @Test
-    public void nullWhenNotInitialized(){
+    public void nullWhenNotInitialized() {
         Assert.assertNull(AuthController.getAuthControllerInstance());
     }
 

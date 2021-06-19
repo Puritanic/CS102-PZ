@@ -19,11 +19,11 @@ public class ScreenControllerTest {
     public JavaFXThreadingRule javafxRule = new JavaFXThreadingRule();
 
     @Test
-    public void nullWhenNotInitialized(){
+    public void nullWhenNotInitialized() {
         Assert.assertNull(ScreenController.getScreenControllerInstance());
     }
 
-    @Test
+    @Test(expected = AlreadyInitializedException.class)
     public void notnullWhenNotInitialized() throws AlreadyInitializedException {
         Map<String, Pane> screenMap = new HashMap<>();
         screenMap.put(Views.HOME.name(), new BorderPane());

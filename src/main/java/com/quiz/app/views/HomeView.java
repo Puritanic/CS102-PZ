@@ -114,7 +114,10 @@ public class HomeView extends BorderPane implements BaseView {
         Button playButton = new Button(isAuthenticated ? "Play" : "Quick Play");
         playButton.setOnAction(btnHandler);
 
-        bottom.getChildren().addAll(resultsButton, playButton);
+        Button relaxButton = new Button("Relax");
+        relaxButton.setOnAction(btnHandler);
+
+        bottom.getChildren().addAll(resultsButton, playButton, relaxButton);
         bottom.setAlignment(Pos.CENTER);
         bottom.setSpacing(15);
 
@@ -143,6 +146,9 @@ public class HomeView extends BorderPane implements BaseView {
                     break;
                 case "Admin":
                     sc.show(sc.getScreen(Views.ADMIN.name()));
+                    break;
+                case "Relax":
+                    sc.show(sc.getScreen(Views.RELAX.name()));
                     break;
                 case "Quick Play":
                 case "Play":

@@ -2,6 +2,7 @@ package com.quiz;
 
 import com.quiz.app.controllers.ScreenController;
 import com.quiz.enums.Views;
+import com.quiz.exceptions.AlreadyInitializedException;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -23,7 +24,7 @@ public class ScreenControllerTest {
     }
 
     @Test
-    public void notnullWhenNotInitialized(){
+    public void notnullWhenNotInitialized() throws AlreadyInitializedException {
         Map<String, Pane> screenMap = new HashMap<>();
         screenMap.put(Views.HOME.name(), new BorderPane());
 
@@ -35,7 +36,7 @@ public class ScreenControllerTest {
     }
 
     @Test
-    public void isAbleToGoBack(){
+    public void isAbleToGoBack() throws AlreadyInitializedException {
         Map<String, Pane> screenMap = new HashMap<>();
         screenMap.put(Views.HOME.name(), new BorderPane());
         screenMap.put(Views.LOGIN.name(), new StackPane());

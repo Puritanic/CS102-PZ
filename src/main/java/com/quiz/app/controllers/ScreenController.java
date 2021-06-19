@@ -53,6 +53,7 @@ public class ScreenController {
         screenMap.put(Views.REGISTER.name(), new RegisterView());
         screenMap.put(Views.RESULTS.name(), new ResultsView());
         screenMap.put(Views.ADMIN.name(), new AdminView());
+        screenMap.put(Views.RELAX.name(), new RelaxView());
         screenControllerInstance = this;
     }
 

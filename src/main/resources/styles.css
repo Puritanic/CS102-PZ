@@ -10,6 +10,10 @@
     -fx-background-color: #526274;
 }
 
+.relax {
+    -fx-background-color: #999B84;
+}
+
 .login .label, .register .label {
     -fx-text-fill: #f1f1f1;
     -fx-font-size: 18px;
@@ -37,7 +41,7 @@
     -fx-text-fill: #f1f1f1;
     -fx-background-radius: 5px;
     -fx-min-height: 50px;
-    -fx-min-width: 150px;
+    -fx-min-width: 140px;
     -fx-font-size: 18px;
     -fx-font-weight: bold;
     -fx-cursor: hand;

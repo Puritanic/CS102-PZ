@@ -9,5 +9,6 @@ public enum Views {
     HOME,
     LOGIN,
     REGISTER,
+    RELAX,
     RESULTS
 }

@@ -10,14 +10,28 @@ public class NumericInput extends TextField {
     private int minValue = 0;
     private int maxValue = 1000;
 
+    /**
+     * Podrazumevani konstruktor
+     */
     public NumericInput(){}
 
+    /**
+     * @param text tekst inputa
+     * @param minValue - minimalna vrednost inputa
+     * @param maxValue - maksimalna vrednost inputa
+     */
     public NumericInput(String text, int minValue, int maxValue) {
         super(text);
         this.minValue = minValue;
         this.maxValue = maxValue;
     }
 
+    /**
+     * Prepisana metoda za replaceText, ovde radimo validaciju pre nego što upišemo tekst u input
+     * @param start str start index
+     * @param end str end index
+     * @param text str
+     */
     @Override
     public void replaceText(int start, int end, String text) {
         if (validate(text)) {
@@ -25,6 +39,10 @@ public class NumericInput extends TextField {
         }
     }
 
+    /**
+     * Prepisana metoda za replaceSelection, gde prvo radimo validaciju pre nego što dozvolimo izmenu teksta
+     * @param text str
+     */
     @Override
     public void replaceSelection(String text) {
         if (validate(text)) {
@@ -58,18 +76,30 @@ public class NumericInput extends TextField {
          return false;
     }
 
+    /**
+     * @return minimalna vrednost input
+     */
     public int getMinValue() {
         return minValue;
     }
 
+    /**
+     * @param minValue minimalna vrednost inputa
+     */
     public void setMinValue(int minValue) {
         this.minValue = minValue;
     }
 
+    /**
+     * @return maksimalna vrednost inputa
+     */
     public int getMaxValue() {
         return maxValue;
     }
 
+    /**
+     * @param maxValue maksimalna vrednost inputa
+     */
     public void setMaxValue(int maxValue) {
         this.maxValue = maxValue;
     }

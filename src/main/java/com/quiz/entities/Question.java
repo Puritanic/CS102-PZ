@@ -10,6 +10,9 @@ import java.util.List;
 @Entity
 @Table(name = "questions")
 public class Question {
+    /**
+     * ID pitanja, autogenerisana vrednost u bazi podataka
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, unique = true, nullable = false)
@@ -34,46 +37,80 @@ public class Question {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "question", cascade = CascadeType.ALL)
     private List<Answer> answers = new ArrayList<>();
 
+    /**
+     * Podrazumevani konstruktor
+     */
     public Question() {
     }
 
+    /**
+     * @param question tekst pitanja
+     */
     public Question(String question) {
         this.question = question;
     }
 
+    /**
+     * @param question tekst pitanja
+     * @param answers lista odgovora
+     */
     public Question(String question, List<Answer> answers) {
         this.question = question;
         this.answers = answers;
     }
 
+    /**
+     * @return id pitanja
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * @param id id pitanja
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * @return tekst pitanja
+     */
     public String getQuestion() {
         return question;
     }
 
+    /**
+     * @param question tekst pitanja
+     */
     public void setQuestion(String question) {
         this.question = question;
     }
 
+    /**
+     * @return lista odgovora
+     */
     public List<Answer> getAnswers() {
         return answers;
     }
 
+    /**
+     * @param answers lista odgovora
+     */
     public void setAnswers(List<Answer> answers) {
         this.answers = answers;
     }
 
+    /**
+     * @return id tačnog odgovora
+     */
     public int getCorrectAnswerId() {
         return correctAnswerId;
     }
 
+    /**
+     * @param correctAnswerId id tačnog odgovora
+     */
     public void setCorrectAnswerId(int correctAnswerId) {
         this.correctAnswerId = correctAnswerId;
     }

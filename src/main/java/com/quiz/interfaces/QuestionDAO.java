@@ -5,6 +5,9 @@ import com.quiz.entities.Question;
 
 import java.util.List;
 
+/**
+ * Osnovni interfejs za rad sa pitanjima u bazi podataka
+ */
 public interface QuestionDAO {
     /**
      * @return List<Question> - Lista svih pitanja sa odgovorima

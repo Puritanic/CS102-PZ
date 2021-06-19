@@ -1,7 +1,7 @@
 package com.quiz.exceptions;
 
 /**
- * Spejilazovana klasa izuzetka za errore koji se dese tokom login ili registration procesa.
+ * Specijalizovana klasa izuzetka za errore koji se dese tokom login ili registration procesa.
  */
 public class AuthException extends Exception {
     public AuthException() {

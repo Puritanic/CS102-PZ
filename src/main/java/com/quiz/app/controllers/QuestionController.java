@@ -8,26 +8,34 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Klasa zadužena za obradu zahteva ka QuestionDAO objektu
+ * Klasa zadužena za obradu zahteva ka QuestionDAOImpl objektu
  */
 public class QuestionController {
+    /**
+     * Question servis za komunikaciju sa bazom podataka
+     */
     private final QuestionDAOImpl questionService = new QuestionDAOImpl();
 
-    public QuestionController(){}
+    /**
+     * Podrazumevani konstruktor
+     */
+    public QuestionController() {
+    }
 
     /**
      * Metoda zadužena za pokretanje zahteva ka bazi podataka, kojim se učitavaju sva dostupna pitanja
+     *
      * @return List<Question> - lista pitanja
      */
-    public List<Question> getQuestions(){
+    public List<Question> getQuestions() {
         return questionService.getQuestions();
     }
 
     /**
-     * @param question pitanje koje želimo da uskladištimo u bazu podataka
-     * @param answer1 prvi odgovor
-     * @param answer2 drugi odgovor
-     * @param answer3 treći odgovor
+     * @param question  pitanje koje želimo da uskladištimo u bazu podataka
+     * @param answer1   prvi odgovor
+     * @param answer2   drugi odgovor
+     * @param answer3   treći odgovor
      * @param answerIdx indeks tačnog odgovora
      */
     public void saveQuestion(String question, String answer1, String answer2, String answer3, int answerIdx) {

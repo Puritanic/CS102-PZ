@@ -20,7 +20,9 @@ import javafx.scene.layout.HBox;
  * Klasa zadužena za prikaz Admin UI gde admin korisnici mogu da unose nova pitanja u bazu podataka.
  */
 public class AdminView extends BorderPane implements BaseView {
-
+    /**
+     * Podrazumevani konstruktor
+     */
     public AdminView() {
         System.out.println("AddQuestion loaded.");
         getStyleClass().add("register");
@@ -39,6 +41,9 @@ public class AdminView extends BorderPane implements BaseView {
         render();
     }
 
+    /**
+     * Overriden metoda, zadužena za renderovanje GUI AdminView-a
+     */
     @Override
     public void render() {
         GridPane center = ViewUtils.createFormPane();
@@ -46,6 +51,11 @@ public class AdminView extends BorderPane implements BaseView {
         setCenter(center);
     }
 
+    /**
+     * Metoda zadužena za kreiranje i postavljanje kontrolnih elemenata na UI
+     *
+     * @param gridPane okno rasporeda
+     */
     private void addUIControls(GridPane gridPane) {
         Label headerLabel = new Label("Add new question");
         headerLabel.getStyleClass().add("header");

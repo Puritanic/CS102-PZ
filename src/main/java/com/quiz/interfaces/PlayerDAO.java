@@ -5,6 +5,9 @@ import com.quiz.exceptions.AuthException;
 
 import java.util.List;
 
+/**
+ * Osnovni interfejs za rad sa igračima u bazi podataka
+ */
 public interface PlayerDAO {
     /**
      * Pokreće poziv kad bazi podataka odakle dobija listu svih registrovanih igrača.
@@ -26,5 +29,8 @@ public interface PlayerDAO {
      */
     Player login(String email, String password) throws AuthException;
 
+    /**
+     * @param newPlayer novi igrač koga registrujemo
+     */
     void register(Player newPlayer);
 }

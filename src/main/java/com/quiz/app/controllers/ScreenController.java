@@ -2,6 +2,7 @@ package com.quiz.app.controllers;
 
 import com.quiz.app.views.*;
 import com.quiz.enums.Views;
+import com.quiz.exceptions.AlreadyInitializedException;
 import com.quiz.interfaces.BaseView;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -18,12 +19,33 @@ import java.util.Stack;
  * instanca (preko polja screenControllerInstance) upotrebljava tamo gde je potrebna.
  */
 public class ScreenController {
+    /**
+     * Instanca ScreenController singleton klase
+     */
     private static ScreenController screenControllerInstance = null;
-    private Map<String, Pane> screenMap = new HashMap<>();
+    /**
+     * Glavna scena aplikacije
+     */
     private final Scene main;
+    /**
+     * Mapa dostupnih ekrana u aplikaciji
+     */
+    private Map<String, Pane> screenMap = new HashMap<>();
+    /**
+     * Istorija ekrana kroz koji je korisnik prošao
+     */
     private Stack<Pane> history = new Stack<>();
 
-    public ScreenController(Scene main) {
+    /**
+     * Podrazumevani konstruktor za ScreenController klasu.
+     *
+     * @param main - primarna scena aplikacije
+     * @throws AlreadyInitializedException - Greška koja se izbacuje ukoliko je ScreenController već inicijalizovan.
+     */
+    public ScreenController(Scene main) throws AlreadyInitializedException {
+        if (screenControllerInstance != null) {
+            throw new AlreadyInitializedException();
+        }
         this.main = main;
         screenMap.put(Views.HOME.name(), new HomeView());
         screenMap.put(Views.GAME.name(), new GameView());
@@ -33,7 +55,16 @@ public class ScreenController {
         screenMap.put(Views.ADMIN.name(), new AdminView());
         screenControllerInstance = this;
     }
-    public ScreenController(Scene main, Map<String, Pane> screenMap) {
+
+    /**
+     * @param main      - primarna scena aplikacije
+     * @param screenMap - Map-a sa predefinisanim ekranima
+     * @throws AlreadyInitializedException - Greška koja se izbacuje ukoliko je ScreenController već inicijalizovan.
+     */
+    public ScreenController(Scene main, Map<String, Pane> screenMap) throws AlreadyInitializedException {
+        if (screenControllerInstance != null) {
+            throw new AlreadyInitializedException();
+        }
         this.screenMap = screenMap;
         this.main = main;
         screenControllerInstance = this;
@@ -41,30 +72,36 @@ public class ScreenController {
 
     /**
      * Statička metoda zadužena za prosledjivanje instance ScreenController klase
+     *
      * @return ScreenController singleton instanca ScreenController-a
      */
     public static ScreenController getScreenControllerInstance() {
         return screenControllerInstance;
     }
 
+    /**
+     * Metoda za setovanje instance ScreenController klase
+     *
+     * @param screenControllerInstance - instanca ScreenController klase
+     */
     public static void setScreenControllerInstance(ScreenController screenControllerInstance) {
         ScreenController.screenControllerInstance = screenControllerInstance;
     }
 
     /**
      * @param screenName - ime ekrana koji želimo da nadjemo, koriste se enums.Views.
-     * @param <T> - generički tip klase, koja nasledjuje BorderPane i implementira BaseView,
-     *           ovo su u suštini *View klase iz views/ paketa.
+     * @param <T>        - generički tip klase, koja nasledjuje BorderPane i implementira BaseView,
+     *                   ovo su u suštini *View klase iz views/ paketa.
      * @return BorderPane
      */
-    public <T extends BorderPane & BaseView> T getScreen(String screenName){
+    public <T extends BorderPane & BaseView> T getScreen(String screenName) {
         return (T) screenMap.get(screenName);
     }
 
     /**
      * Metoda koja omogućava povratak na prethodni ekran
      */
-    public void goBack(){
+    public void goBack() {
         history.pop();
         Pane currentScreen = history.peek();
         main.setRoot(currentScreen);
@@ -73,6 +110,7 @@ public class ScreenController {
 
     /**
      * Koristi se za prikazivanje ekrana za koje nam nije bitno da li krećemo od početnog stanja ili ne.
+     *
      * @param name - ime ekrana koji želimo da prikažemo
      */
     public void show(String name) {
@@ -85,8 +123,9 @@ public class ScreenController {
     /**
      * Koristi se za prikazivanje ekrana za koje nam jebitno da krećemo sa svežim UI, što se postiže zvanjem
      * render() metode koja kreira UI ekrana sa novim podacima i novim state-om
+     *
      * @param view - Jedna od *View klasa iz views/ paketa
-     * @param <T> - Jedna od *View klasa iz views/ paketa
+     * @param <T>  - Jedna od *View klasa iz views/ paketa
      */
     public <T extends BorderPane & BaseView> void show(T view) {
         view.render();
@@ -95,18 +134,38 @@ public class ScreenController {
         main.getRoot().getStylesheets().add("styles.css");
     }
 
+    /**
+     * Getter metoda za čitanje mape ekrana
+     *
+     * @return screenMap - mapa ekrana
+     */
     public Map<String, Pane> getScreenMap() {
         return screenMap;
     }
 
+    /**
+     * Setter metoda za setovanje mape ekrana
+     *
+     * @param screenMap - mapa ekrana
+     */
     public void setScreenMap(Map<String, Pane> screenMap) {
         this.screenMap = screenMap;
     }
 
+    /**
+     * Getter metoda za čitanje istorije ekrana
+     *
+     * @return history - trenutni history Stack ekrana
+     */
     public Stack<Pane> getHistory() {
         return history;
     }
 
+    /**
+     * Setter metoda za setovanje istorije ekrana
+     *
+     * @param history - history Stack ekrana
+     */
     public void setHistory(Stack<Pane> history) {
         this.history = history;
     }

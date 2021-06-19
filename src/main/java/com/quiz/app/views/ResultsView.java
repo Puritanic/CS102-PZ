@@ -18,9 +18,15 @@ import javafx.scene.layout.StackPane;
  * Klasa zadužena za prikazivanje UI sa tabelom rezultata.
  */
 public class ResultsView extends BorderPane implements BaseView {
+    /**
+     * Instanca TableView klase, u kojoj će biti prikazani rezultati
+     */
     private final TableView<Player> table = new TableView<>();
 
-    public ResultsView(){
+    /**
+     * Podrazumevani konstruktor
+     */
+    public ResultsView() {
         System.out.println("ResultsView loaded.");
         getStyleClass().add("results");
         setPadding(new Insets(30, 30, 30, 30));
@@ -44,6 +50,9 @@ public class ResultsView extends BorderPane implements BaseView {
         render();
     }
 
+    /**
+     * Overriden metoda, zadužena za renderovanje GUI AdminView-a
+     */
     @Override
     public void render() {
         populateTable();

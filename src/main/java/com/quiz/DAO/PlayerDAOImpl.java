@@ -17,9 +17,18 @@ import java.util.List;
  * Data Access Object za Player klasu. Ova klasa se koristi u Player kontroleru za komunikaciju sa bazom podataka.
  */
 public class PlayerDAOImpl implements PlayerDAO {
+    /**
+     * Podrazumevani konstruktor
+     */
     public PlayerDAOImpl() {
     }
 
+    /**
+     * @param email    String - email igrača
+     * @param password String - Enkriptovana šifra korisnika
+     * @return instanca Player igrača, ukoliko je ulogovan uspešno
+     * @throws AuthException - greška koja se izbacuje ukoliko je došlo do greške prilikom logovanja
+     */
     public Player login(String email, String password) throws AuthException {
         Session session = HibernateUtil.getCurrentSession();
         session.beginTransaction();
@@ -42,6 +51,9 @@ public class PlayerDAOImpl implements PlayerDAO {
         }
     }
 
+    /**
+     * @param newPlayer instanca klase Player, koju trebamo registrovati u bazi podataka
+     */
     public void register(Player newPlayer) {
         Session s = HibernateUtil.getCurrentSession();
         s.beginTransaction();
@@ -49,6 +61,9 @@ public class PlayerDAOImpl implements PlayerDAO {
         s.getTransaction().commit();
     }
 
+    /**
+     * @param player Player objekat koji menjamo
+     */
     public void updatePlayer(Player player) {
         Session s = HibernateUtil.getCurrentSession();
         s.beginTransaction();
@@ -56,6 +71,9 @@ public class PlayerDAOImpl implements PlayerDAO {
         s.getTransaction().commit();
     }
 
+    /**
+     * @return lista igrača iz baze podataka
+     */
     @Override
     public List<Player> getPlayerData() {
         Session s = HibernateUtil.getCurrentSession();

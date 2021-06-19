@@ -13,6 +13,9 @@ import javafx.stage.Window;
  * Util klasa sa funkcijama koje se koriste u BaseView klasama. Moguć je samo statički pristup.
  */
 public final class ViewUtils {
+    /**
+     * Podrazumevani konstruktor
+     */
     private ViewUtils(){}
 
     /**

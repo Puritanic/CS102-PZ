@@ -13,8 +13,14 @@ import java.util.List;
  * Data Access Object za Question klasu. Koristi se Question kontroler klasi za komunikaciju za bazom.
  */
 public class QuestionDAOImpl implements QuestionDAO {
+    /**
+     * Podrazumevani konstruktor
+     */
     public QuestionDAOImpl(){}
 
+    /**
+     * @return lista pitanja iz baze podataka
+     */
     @Override
     public List<Question> getQuestions() {
         Session session = HibernateUtil.getCurrentSession();
@@ -27,6 +33,11 @@ public class QuestionDAOImpl implements QuestionDAO {
         return questions;
     }
 
+    /**
+     * @param q         Pitanje koje želimo da sačuvamo
+     * @param answers   Lista odgovora za dato pitanje
+     * @param answerIdx indeks tačnog odgovora u listi pitanja
+     */
     @Override
     public void saveQuestion(Question q, List<Answer> answers, int answerIdx) {
         Session session = HibernateUtil.getCurrentSession();

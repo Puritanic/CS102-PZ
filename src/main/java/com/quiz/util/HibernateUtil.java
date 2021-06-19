@@ -12,8 +12,14 @@ import com.quiz.entities.Question;
  * i za izvršavanje svih transakcija u toku rada aplikacije.
  */
 public class HibernateUtil {
+    /**
+     * instanca Hibernate SessionFactory klase, koja je inicijalizovana samo jedno u toku rada aplikacije
+     */
     private static SessionFactory sessionFactory = null;
 
+    /**
+     * Metoda zadužena za inicijalizaciju sessionFactory polja, i inicijalnu konfiguraciju hibernate ORM-a
+     */
     public static void createSessionFactory() {
         try {
             Configuration config = new Configuration().configure("hibernate.cfg.xml");
@@ -27,14 +33,25 @@ public class HibernateUtil {
         }
     }
 
+    /**
+     * Getter metoda koja vraća Session objekat sessionFactory-a
+     * @return sesija sessionFactory-a
+     */
     public static Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
     }
 
+    /**
+     * Getter metoda za čitanje sessionFactory polja
+     * @return sessionFactory
+     */
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
 
+    /**
+     * Metoda zadužena za zatvaranje konekcije ka bazi podataka
+     */
     public static void closeSessionFactory() {
         sessionFactory.close();
     }

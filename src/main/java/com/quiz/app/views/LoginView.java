@@ -10,13 +10,18 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 
 /**
  * Klasa zadužena za prikazivanje UI sa formom za login postojećeg korisnika.
  */
 public class LoginView extends BorderPane implements BaseView {
-    public LoginView(){
+    /**
+     * Podrazumevani konstruktor
+     */
+    public LoginView() {
         System.out.println("LoginView loaded");
         getStyleClass().add("login");
         setPadding(new Insets(30, 30, 30, 30));
@@ -35,6 +40,9 @@ public class LoginView extends BorderPane implements BaseView {
         render();
     }
 
+    /**
+     * Overriden metoda, zadužena za renderovanje GUI AdminView-a
+     */
     @Override
     public void render() {
         GridPane center = ViewUtils.createFormPane();
@@ -54,12 +62,17 @@ public class LoginView extends BorderPane implements BaseView {
         setBottom(bottom);
     }
 
+    /**
+     * Metoda zadužena za kreiranje i postavljanje kontrolnih elemenata na UI
+     *
+     * @param gridPane okno rasporeda
+     */
     private void addUIControls(GridPane gridPane) {
         Label headerLabel = new Label("Login");
         headerLabel.getStyleClass().add("header");
-        gridPane.add(headerLabel, 0,0,2,1);
+        gridPane.add(headerLabel, 0, 0, 2, 1);
         GridPane.setHalignment(headerLabel, HPos.CENTER);
-        GridPane.setMargin(headerLabel, new Insets(20, 0,20,0));
+        GridPane.setMargin(headerLabel, new Insets(20, 0, 20, 0));
 
         Label emailLabel = new Label("Email: ");
         gridPane.add(emailLabel, 0, 1);
@@ -81,15 +94,15 @@ public class LoginView extends BorderPane implements BaseView {
         submitButton.setPrefWidth(100);
         gridPane.add(submitButton, 0, 3, 2, 1);
         GridPane.setHalignment(submitButton, HPos.CENTER);
-        GridPane.setMargin(submitButton, new Insets(20, 0,20,0));
+        GridPane.setMargin(submitButton, new Insets(20, 0, 20, 0));
 
         submitButton.setOnAction(event -> {
-            if(emailField.getText().isEmpty()) {
+            if (emailField.getText().isEmpty()) {
                 ViewUtils.showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(),
                         "Form Error!", "Please enter your email id");
                 return;
             }
-            if(passwordField.getText().isEmpty()) {
+            if (passwordField.getText().isEmpty()) {
                 ViewUtils.showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(),
                         "Form Error!", "Please enter a password");
                 return;
@@ -98,12 +111,12 @@ public class LoginView extends BorderPane implements BaseView {
             PlayerController pc = new PlayerController();
             try {
                 pc.loginPlayer(emailField.getText(), passwordField.getText());
-            } catch (AuthException ex){
+            } catch (AuthException ex) {
                 System.out.println(ex.getMessage());
 
                 ViewUtils.showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(),
                         "Login Error!", "Bad credentials. Please check your email and password");
-            } catch (Exception ex){
+            } catch (Exception ex) {
                 System.out.println(ex.getMessage());
 
                 ViewUtils.showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(),

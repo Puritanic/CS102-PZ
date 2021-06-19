@@ -20,6 +20,9 @@ import javafx.scene.layout.HBox;
  * Klasa zadužena za prikazivanje početnog ekrana aplikacije.
  */
 public class HomeView extends BorderPane implements BaseView {
+    /**
+     * Podrazumevani konstruktor
+     */
     public HomeView() {
         super();
         getStyleClass().add("home");

@@ -26,20 +26,41 @@ import java.util.List;
  * Klasa zadužena za prikazivanje kviz ekrana aplikacije.
  */
 public class GameView extends BorderPane implements BaseView {
+    /**
+     * Predefinisani niz AnswerButton klasa, koji će biti upotrebljen za prezentaciju i obradu odgovora
+     */
     private final AnswerButton[] answerButtons = new AnswerButton[3];
-    private Label questionLabel;
-    private Label feedbackLabel;
-    private GameController gameController;
+    /**
+     * Instanca FadeTransition animacije, koju koristimo za prikaz/sakrivanje feedbackLabel Label-a
+     */
     private final FadeTransition fadeInOut = new FadeTransition(
             Duration.millis(1200)
     );
+    /**
+     * Label node zadužen za prikaz tekst pitanja
+     */
+    private Label questionLabel;
+    /**
+     * Label node zadužen za prikaz povratne informacije nakon odgovora (tačan/netačan odgovor)
+     */
+    private Label feedbackLabel;
+    /**
+     * Instanca klase GameController, koju koristimo za napredak kroz igru
+     */
+    private GameController gameController;
 
+    /**
+     * Podrazumevani konstruktor
+     */
     public GameView() {
         System.out.println("GameView loaded");
         getStyleClass().add("game");
         setPadding(new Insets(100, 100, 50, 100));
     }
 
+    /**
+     * Overriden metoda, zadužena za renderovanje GUI AdminView-a
+     */
     @Override
     public void render() {
         setTop(buildQuestionLabel());
@@ -64,6 +85,7 @@ public class GameView extends BorderPane implements BaseView {
 
     /**
      * Metoda koja je zadužena za kreiranje Label node-a koji će služiti za prikaz teksta pitanja
+     *
      * @return HBox sa Label node-om
      */
     private HBox buildQuestionLabel() {
@@ -81,6 +103,7 @@ public class GameView extends BorderPane implements BaseView {
      * Metoda koja je zadužena za kreiranje Label node-a koji će služiti za feedback
      * u zavisnosti da li je odgovor na dato pitanje bio tačan ili ne. Takodje konfiguriše jednostavnu
      * FadeTransition animaciju za Label node.
+     *
      * @return HBox sa Label node-om
      */
     private HBox buildFeedbackLabel() {
@@ -101,6 +124,7 @@ public class GameView extends BorderPane implements BaseView {
 
     /**
      * Metoda zadužena za kreiranje vertikalne liste odgovora (AnswerButton nodes)
+     *
      * @return VBox - sa odgovorima
      */
     private VBox buildAnswerButtons() {
@@ -123,6 +147,7 @@ public class GameView extends BorderPane implements BaseView {
 
     /**
      * Metoda zadužena za prikaz pitanja sa propratnim odgovorima.
+     *
      * @param question instanca Question klase
      */
     private void displayQuestion(Question question) {
@@ -144,6 +169,7 @@ public class GameView extends BorderPane implements BaseView {
      * Metoda zadužena za prikaz Game Over interfejsa, nakon završetka igre.
      * Takodje, u slučaju da je korisnik ulogovan, pokreće komunikaciju sa bazom podataka
      * gde se vrši update korisničkih podataka, sa novim brojem poena i brojem završenih partija.
+     *
      * @return BorderPane
      */
     private BorderPane displayGameOver() {

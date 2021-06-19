@@ -2,7 +2,13 @@ package com.quiz.util;
 
 import org.jasypt.util.password.StrongPasswordEncryptor;
 
+/**
+ * Util klasa zadužena za enkripciju i dekripciju teksta.
+ */
 public class PasswordUtils {
+	/**
+	 * Instanca StrongPasswordEncryptor klase, koju koristimo za enkripciju i dekripciju šifara
+	 */
 	private static final StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
 	
 	/**

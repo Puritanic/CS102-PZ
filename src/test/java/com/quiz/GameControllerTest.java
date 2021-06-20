@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameControllerTest {
+    /**
+     * Provera rada sa pitanjima u GameController klasi
+     */
     @Test
     public void testQuickGameInit() {
         List<Answer> aList = new ArrayList<>();
@@ -34,6 +37,9 @@ public class GameControllerTest {
         Assert.assertSame(gc.getCurrentQuestion(), qList.get(0));
     }
 
+    /**
+     * Provera rada promene pitanja za vreme igre sa ulogovanim korisnikom
+     */
     @Test
     public void testGameInitWithPlayer() {
         List<Answer> aList = new ArrayList<>();

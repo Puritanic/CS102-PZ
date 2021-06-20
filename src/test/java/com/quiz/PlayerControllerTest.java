@@ -35,6 +35,10 @@ public class PlayerControllerTest {
         MockitoAnnotations.initMocks(this);
     }
 
+    /**
+     * Provera rada metode login, da li se poziva i da li se poziva sa odgovarajućim argumentima
+     * @throws AuthException -
+     */
     @Test
     public void loginPlayerTest() throws AuthException {
         Player player = new Player("test_username", "test@test.com", "passss", false);
@@ -45,6 +49,9 @@ public class PlayerControllerTest {
         org.hamcrest.MatcherAssert.assertThat(playerServiceTestMock.login("test@test.com", "passss"), is(notNullValue()));
     }
 
+    /**
+     * Provera rada metode register, da li se poziva i da li se poziva sa odgovarajućim argumentima
+     */
     @Test
     public void registerPlayerTest() {
         Player player = new Player("test_username", "test@test.com", "passss", false);
@@ -61,6 +68,9 @@ public class PlayerControllerTest {
         org.hamcrest.MatcherAssert.assertThat(playerArgumentCaptor.getValue().getEmail(), is(notNullValue()));
     }
 
+    /**
+     * Provera rada metode updatePlayer, da li se poziva, da li se poziva sa odgovarajućim argumentima i da li je return vrednost odgovarajuća (not null)
+     */
     @Test
     public void updatePlayerTest() {
         Player player = new Player("test_username", "test@test.com", "passss", false);
@@ -77,6 +87,9 @@ public class PlayerControllerTest {
         org.hamcrest.MatcherAssert.assertThat(playerArgumentCaptor.getValue().getEmail(), is(notNullValue()));
     }
 
+    /**
+     * Provera rada metode getPlayerData, da li se poziva i da li je return vrednost odgovarajuća (not null)
+     */
     @Test
     public void getPlayerDataTest() {
         List<Player> players = new ArrayList<>();

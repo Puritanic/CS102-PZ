@@ -23,6 +23,9 @@ public class QuestionControllerTest {
         MockitoAnnotations.initMocks(this);
     }
 
+    /**
+     * Provera rada metode getQuestions, da li se poziva i da li je return vrednost odgovarajuća (not null)
+     */
     @Test
     public void getQuestionsTest() {
         List<Question> questions = new ArrayList<>();

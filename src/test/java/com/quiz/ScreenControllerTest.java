@@ -18,11 +18,17 @@ public class ScreenControllerTest {
     @Rule
     public JavaFXThreadingRule javafxRule = new JavaFXThreadingRule();
 
+    /**
+     * Provera da je ScreenController singleton instanca null pre inicijalizacije
+     */
     @Test
     public void nullWhenNotInitialized() {
         Assert.assertNull(ScreenController.getScreenControllerInstance());
     }
 
+    /**
+     * Provera da ScreenController singleton instanca nije null nakon inicijalizacije
+     */
     @Test(expected = AlreadyInitializedException.class)
     public void notnullWhenNotInitialized() throws AlreadyInitializedException {
         Map<String, Pane> screenMap = new HashMap<>();
@@ -35,6 +41,9 @@ public class ScreenControllerTest {
         Assert.assertNotNull(ScreenController.getScreenControllerInstance());
     }
 
+    /**
+     * Provera goBack metode i da li history radi očeivano
+     */
     @Test
     public void isAbleToGoBack() throws AlreadyInitializedException {
         Map<String, Pane> screenMap = new HashMap<>();

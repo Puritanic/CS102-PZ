@@ -5,6 +5,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class PasswordUtilsTest {
+    /**
+     * Provera rada metode enkripcije
+     */
     @Test
     public void encryptsPassedValue() {
         String pass = "test password";
@@ -12,6 +15,9 @@ public class PasswordUtilsTest {
         Assert.assertNotEquals(pass, encryptedPass);
     }
 
+    /**
+     * Provera rada metode dekripcije
+     */
     @Test
     public void canDecryptPassedValue() {
         String pass = "test password";

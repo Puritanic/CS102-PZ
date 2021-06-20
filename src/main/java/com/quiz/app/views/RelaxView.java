@@ -94,6 +94,7 @@ public class RelaxView extends BorderPane implements BaseView {
 
     /**
      * Task metoda zadužena za pokretanje Jsoup page crawlera i izvlačenja slika iz img elemenata na stranici
+     *
      * @return niz sa img URL
      */
     private Task<String[]> getImagesTask() {
@@ -116,8 +117,6 @@ public class RelaxView extends BorderPane implements BaseView {
                     for (int i = 0; i < maxImgNum; i++) {
                         Element img = images.get(i);
                         String imgSrc = img.attr("src");
-
-                        System.out.println(imgSrc);
 
                         if (imgSrc.length() > 0) {
                             imageUrls[i] = imgSrc;
